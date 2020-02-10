@@ -1,0 +1,451 @@
+---
+title: "Creating a list of studied specimens"
+output: html_notebook
+---
+
+In this notebook, we will load a table with information on specimens studied and format it as rich text to include in the manuscript.
+
+Let's start by loading packages:
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(rtf)
+library(readxl)
+```
+
+Now, let's read the dataset
+
+```{r}
+specimens = readxl::read_excel('especimes estudados_2020_rev1.xlsx')
+specimens
+```
+
+First, let's consolidate the field of collector
+```{r}
+specimens = specimens %>%
+  mutate(collector1 = ifelse(!is.na(collector_interpreted),
+                            collector_interpreted,
+                            colletor)
+         )
+
+specimens
+```
+
+Now, let's consolidate the collection. Some specimens were donated to other collections during the work, and we will record the destination collection.
+```{r}
+specimens = specimens %>%
+  mutate(collection1 = ifelse(!is.na(collection_new),
+                            collection_new,
+                            collection)
+         )
+
+specimens
+
+```
+
+Now let's change sex by a name that we will replace in the RTF with symbols. Unfortunately, word can't read UTF8 encoding properly, and rtf package can't deal with other encodings.
+```{r}
+specimens = specimens %>%
+  mutate(sex = ifelse(sex == 'm','MACHO',sex),
+         sex = ifelse(sex == 'f','FEMEA',sex),
+         sex = ifelse(is.na(sex),'sex unknown',sex))
+
+specimens
+```
+
+Now let's reformat country, state and locality.
+
+```{r}
+specimens = specimens %>%
+  mutate(country = ifelse(country=='no data', 'No country', country),
+         state = ifelse(state=='no data', 'No region', state),
+         locality = ifelse(locality=='no data', 'No locality', locality),
+         locality = ifelse(!is.na(updated_locality),str_c(locality,
+                                                          ' [',
+                                                          updated_locality,
+                                                          ']'),
+                           locality),
+         collector1 = ifelse(collector1=='no data', 'no collector', collector1))
+```
+
+
+Now let's summarise dates. For that, let's create a function that will summarize one line.
+```{r}
+get_summarized_date = function(line){
+  get_single_date = function(d, m, y){
+    if (!is.na(d)){
+        #day/month/year, single date
+        
+        return(str_c(sprintf("%02d",d), 
+                                    as.roman(m),
+                                    y,
+                                    sep='/'))
+      } else {
+        if (!is.na(m)){
+          #month/year, single date
+          
+          return(str_c(as.roman(m),
+                                    y,
+                                    sep='/'))
+        } else {
+          if (!is.na(y)){
+            #year, single date
+            return(as.character(y))
+          } else {
+            return('no date')
+          }
+          
+        }
+      }
+  }
+  
+  
+  if (line$is_date_legible == 'F'){
+    return('date illegible')
+    
+  } else {
+    if (is.na(line$year_end)){
+      return(get_single_date(line$day_start,
+                             line$month_start,
+                             line$year_start))
+      
+    } else {
+      first = get_single_date(line$day_start,
+                             line$month_start,
+                             line$year_start)
+      second = get_single_date(line$day_end,
+                             line$month_end,
+                             line$year_end)
+      
+      y = line$year_end
+      m = as.roman(line$month_end)
+      first = str_remove(first,str_c('/',y))
+      first = str_remove(first,str_c('/',m))
+      
+      return(str_c(first,
+                   second,
+                   sep='\U2013'
+                   )
+             )
+    }
+  }
+}
+```
+
+
+Now we apply the function.
+```{r}
+specimens$date_final = specimens %>%
+  split(1:nrow(.)) %>%
+  purrr::map(get_summarized_date) %>%
+  unlist
+
+specimens
+```
+
+
+Now let's keep only the columns that we will use
+```{r}
+specimens = specimens %>%
+  select(accepted_name, 
+         type_name, 
+         sex, 
+         collector = collector1,
+         country,
+         state,
+         locality,
+         date = date_final,
+         collection = collection1,
+         type_status,
+         quantity)
+
+specimens
+```
+
+Now let's sum all specimens for each combination of locality / date / collector / sex / type status / collection.
+
+```{r}
+specimens = specimens %>% group_by(accepted_name,
+                                   type_name,
+                                   sex,collector,
+                                   country,
+                                   state,
+                                   locality,
+                                   date,
+                                   collection,
+                                   type_status) %>%
+  summarise(quantity = sum(quantity))
+specimens
+```
+
+The table includes some entries with quantity of 0, which were used to facilitate typing. Let's remove them now.
+```{r}
+specimens = specimens %>%
+  filter(quantity > 0)
+```
+
+
+
+Now let's order the data frame.
+```{r}
+specimens = specimens %>%
+  arrange(accepted_name,
+          type_status,
+          country,
+          state,
+          locality,
+          collector,
+          date,
+          collection,
+          sex)
+
+specimens
+```
+
+Let's separate types and nontypes:
+```{r}
+types = specimens %>% filter(!is.na(type_status))
+nontypes = specimens %>% filter(is.na(type_status)) %>%
+  ungroup %>%
+  select(-type_name, -type_status)
+```
+
+
+Now let's loop through species and make separate lists for types and non types
+
+```{r}
+rtf = RTF('material_examined.rtf')
+for (sp in unique(specimens$accepted_name)){
+  addHeader(rtf,sp)
+  
+  addHeader(rtf,'Type material')
+  
+  this = filter(types,accepted_name == sp)
+  this$same = this$accepted_name == this$type_name
+  this = this %>%
+    arrange(desc(same), type_name, type_status, country, state, locality, date, sex, collection)
+  
+  addText(rtf,str_c(toupper(this[1,]$country),'. '),bold = F)
+  addText(rtf,str_c(this[1,]$state,': '),bold = T)
+  addText(rtf,str_c(this[1,]$locality,', '),bold = F)
+  addText(rtf,str_c(this[1,]$collector,', '),bold = F)
+  addText(rtf,str_c(this[1,]$date,' ('),bold = F)
+  if (!(this[1,]$type_status %in% c('lectotype','holotype'))){
+    addText(rtf,str_c(this[1,]$quantity,' '),bold = F)
+  }
+  addText(rtf,str_c(this[1,]$sex,' '),bold = F)
+  addText(rtf,str_c(this[1,]$type_status,' '),bold = F)
+  addText(rtf,str_c('Anchylorhynchus ',this[1,]$type_name,' '),italic = T)
+  addText(rtf,str_c(this[1,]$collection),bold = F)
+  
+  previous = list(country = this[1,]$country,
+                  state = this[1,]$state,
+                  locality = this[1,]$locality,
+                  collector = this[1,]$collector,
+                  date = this[1,]$date)
+  
+  
+  
+  
+  if (nrow(this) >= 2){
+    for (i in 2:nrow(this)){
+      if (this[i,]$country != previous$country){
+        addText(rtf,').\n',bold=F)
+        addText(rtf,str_c(toupper(this[i,]$country),'. '),bold = F)
+        addText(rtf,str_c(this[i,]$state,': '),bold = T)
+        addText(rtf,str_c(this[i,]$locality,', '),bold = F)
+        addText(rtf,str_c(this[i,]$collector,', '),bold = F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        if (!(this[i,]$type_status %in% c('lectotype','holotype'))){
+          addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        }
+        addText(rtf,str_c(this[i,]$sex,' '),bold = F)
+        addText(rtf,str_c(this[i,]$type_status,' '),bold = F)
+        addText(rtf,str_c('Anchylorhynchus ',this[i,]$type_name,' '),italic = T)
+        addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else if (this[i,]$state != previous$state){
+        addText(rtf,'). ',bold=F)
+        addText(rtf,str_c(this[i,]$state,': '),bold = T)
+        addText(rtf,str_c(this[i,]$locality,', '),bold = F)
+        addText(rtf,str_c(this[i,]$collector,', '),bold = F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        if (!(this[i,]$type_status %in% c('lectotype','holotype'))){
+          addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        }
+        addText(rtf,str_c(this[i,]$sex,' '),bold = F)
+        addText(rtf,str_c(this[i,]$type_status,' '),bold = F)
+        addText(rtf,str_c('Anchylorhynchus ',this[i,]$type_name,' '),italic = T)
+        addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else if (this[i,]$locality != previous$locality){
+        addText(rtf,'); ',bold=F)
+        addText(rtf,str_c(this[i,]$locality,', '),bold = F)
+        addText(rtf,str_c(this[i,]$collector,', '),bold = F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        if (!(this[i,]$type_status %in% c('lectotype','holotype'))){
+          addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        }
+        addText(rtf,str_c(this[i,]$sex,' '),bold = F)
+        addText(rtf,str_c(this[i,]$type_status,' '),bold = F)
+        addText(rtf,str_c('Anchylorhynchus ',this[i,]$type_name,' '),italic = T)
+        addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else if (this[i,]$collector != previous$collector){
+        addText(rtf,'); ',bold=F)
+        addText(rtf,str_c(this[i,]$collector,', '),bold = F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        if (!(this[i,]$type_status %in% c('lectotype','holotype'))){
+          addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        }
+        addText(rtf,str_c(this[i,]$sex,' '),bold = F)
+        addText(rtf,str_c(this[i,]$type_status,' '),bold = F)
+        addText(rtf,str_c('Anchylorhynchus ',this[i,]$type_name,' '),italic = T)
+        addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else if (this[i,]$date != previous$date){
+        addText(rtf,'); ',bold=F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        if (!(this[i,]$type_status %in% c('lectotype','holotype'))){
+          addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        }
+        addText(rtf,str_c(this[i,]$sex,' '),bold = F)
+        addText(rtf,str_c(this[i,]$type_status,' '),bold = F)
+        addText(rtf,str_c('Anchylorhynchus ',this[i,]$type_name,' '),italic = T)
+        addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else {
+        addText(rtf,', ',bold=F)
+        if (!(this[i,]$type_status %in% c('lectotype','holotype'))){
+          addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        }
+        addText(rtf,str_c(this[i,]$sex,' '),bold = F)
+        addText(rtf,str_c(this[i,]$type_status,' '),bold = F)
+        addText(rtf,str_c('Anchylorhynchus ',this[i,]$type_name,' '),italic = T)
+        addText(rtf,str_c(this[i,]$collection),bold = F)
+      }
+      previous = list(country = this[i,]$country,
+                      state = this[i,]$state,
+                      locality = this[i,]$locality,
+                      collector = this[i,]$collector,
+                      date = this[i,]$date)
+      
+    }
+  }
+  
+  addText(rtf,')\n\n',bold = F)
+  
+  addHeader(rtf,'Other material')
+  
+  this = filter(nontypes,accepted_name == sp)
+  
+  addText(rtf,str_c(toupper(this[1,]$country),'. '),bold = F)
+  addText(rtf,str_c(this[1,]$state,': '),bold = T)
+  addText(rtf,str_c(this[1,]$locality,', '),bold = F)
+  addText(rtf,str_c(this[1,]$collector,', '),bold = F)
+  addText(rtf,str_c(this[1,]$date,' ('),bold = F)
+  addText(rtf,str_c(this[1,]$quantity,' '),bold = F)
+  addText(rtf,this[1,]$sex,bold = F)
+  
+  
+  previous = list(country = this[1,]$country,
+                  state = this[1,]$state,
+                  locality = this[1,]$locality,
+                  collector = this[1,]$collector,
+                  date = this[1,]$date,
+                  collection = this[1,]$collection)
+  
+  
+  
+  
+  if (nrow(this) >= 2){
+    for (i in 2:nrow(this)){
+      if (this[i,]$country != previous$country){
+        addText(rtf,str_c(' ',previous$collection),bold = F)
+        addText(rtf,').\n',bold=F)
+        addText(rtf,str_c(toupper(this[i,]$country),'. '),bold = F)
+        addText(rtf,str_c(this[i,]$state,': '),bold = T)
+        addText(rtf,str_c(this[i,]$locality,', '),bold = F)
+        addText(rtf,str_c(this[i,]$collector,', '),bold = F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        addText(rtf,this[i,]$sex,bold = F)
+        #addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else if (this[i,]$state != previous$state){
+        addText(rtf,str_c(' ',previous$collection),bold = F)
+        addText(rtf,'). ',bold=F)
+        addText(rtf,str_c(this[i,]$state,': '),bold = T)
+        addText(rtf,str_c(this[i,]$locality,', '),bold = F)
+        addText(rtf,str_c(this[i,]$collector,', '),bold = F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        addText(rtf,this[i,]$sex,bold = F)
+        #addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else if (this[i,]$locality != previous$locality){
+        addText(rtf,str_c(' ',previous$collection),bold = F)
+        addText(rtf,'); ',bold=F)
+        addText(rtf,str_c(this[i,]$locality,', '),bold = F)
+        addText(rtf,str_c(this[i,]$collector,', '),bold = F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        addText(rtf,this[i,]$sex,bold = F)
+        #addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else if (this[i,]$collector != previous$collector){
+        addText(rtf,str_c(' ',previous$collection),bold = F)
+        addText(rtf,'); ',bold=F)
+        addText(rtf,str_c(this[i,]$collector,', '),bold = F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        addText(rtf,this[i,]$sex,bold = F)
+        #addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else if (this[i,]$date != previous$date){
+        addText(rtf,str_c(' ',previous$collection),bold = F)
+        addText(rtf,'); ',bold=F)
+        addText(rtf,str_c(this[i,]$date,' ('),bold = F)
+        addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        addText(rtf,this[i,]$sex,bold = F)
+        #addText(rtf,str_c(this[i,]$collection),bold = F)
+        
+      } else if (this[i,]$collection != previous$collection) {
+        addText(rtf,str_c(' ',previous$collection),bold = F)
+        addText(rtf,', ',bold=F)
+        addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        addText(rtf,this[i,]$sex,bold = F)
+        
+      } else {
+        addText(rtf,', ',bold=F)
+        addText(rtf,str_c(this[i,]$quantity,' '),bold = F)
+        addText(rtf,this[i,]$sex,bold = F)
+        #addText(rtf,str_c(this[i,]$collection),bold = F)
+      }
+      previous = list(country = this[i,]$country,
+                      state = this[i,]$state,
+                      locality = this[i,]$locality,
+                      collector = this[i,]$collector,
+                      date = this[i,]$date,
+                      collection = this[i,]$collection)
+      
+    }
+  }
+  addText(rtf,str_c(' ',previous$collection),bold = F)
+  addText(rtf,')',bold = F)
+  
+  addPageBreak(rtf)
+}
+
+```
+
+```{r}
+done(rtf)
+```
+
+
+# To do manually:
+
+Since measurement table and specimen table are distinct, we will add "dissected" manually.
+We will also use BBedit to change encoding from UTF8 to Mac OS Roman.
+In word, we have to use find and replace to replace "MACHO" with ♂ and "FEMALE" with ♀, and double check any oddity in the species lists.

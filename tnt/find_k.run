@@ -1,0 +1,123 @@
+macro=;
+ts/;
+xmu: noprvmix;
+goto = %0 ;
+
+/* Variables and argument definition */
+clb;
+if ( argnumber == 0 ) 
+	cls;
+
+quote 	
+Enter arguments: If you want to run the script with the default settings use the argument def . 
+Number of hits                                        (2)
+Number of distorsion groups                          (11)
+Minimum value of distortion in a mean character      (50) 
+Maximum value of distortion in a mean character      (90)
+Seaching level                                       (7)
+Be sure that the file out.txt is not open;
+	proc/;
+end;
+var: hits grupos distmin distmax lev; 
+
+if (eqstring [%1 def ] )  set hits 2; set grupos 11; set distmin 50; set distmax 90; set lev 7;
+
+else
+set hits %1; set grupos %2; set distmin %3; set distmax %4; set lev %5 ;
+end;
+
+var: longmin pasosmin dif pasosmed distref ['grupos'] kref ['grupos'] largo ['grupos'] fits ['grupos'] difspr ['grupos'] nodcons['grupos'] agree ['grupos'] arboles ['grupos'] ;
+
+/* Searching with equal weights */
+/* Determining the number of steps in a "mean" character" */
+
+rse 0; coll 3;
+macreport=;
+pi-;
+k0;
+echo-;
+report=;
+ho100;
+xmu= hits 'hits' level 'lev' drift10;
+
+set longmin length [0];  	
+set pasosmin minsteps;	
+set dif ('longmin'-'pasosmin');  	
+
+set pasosmed ('dif'/'pasosmin');	/* steps of a mean character */
+
+loop 0 ('grupos'-1)
+set distref [#1] ('distmin'+((#1/('grupos'-1))*('distmax'-'distmin')));  
+stop; 		
+
+quote 'distref';
+
+loop 0 ('grupos'-1)
+set kref[#1] ('pasosmed'*('distref[#1]'/100)/(1-('distref[#1]'/100)));
+stop;             	/* variables 30-40 = k0 a k10 */
+		
+/* BUSQUEDAS */
+
+loop 0 ('grupos'-1)
+	rse0; ho10000;
+	pi='kref[#1]';
+	k1;
+	xmu: prvmix;
+	xmu= hits 'hits' level 'lev' rat10 drift10; 
+	bb;
+	ts k#1..ctf;
+	save;
+	ts/;
+	set largo[#1] length[0];
+	set fits[#1] fit[0];
+stop;
+
+goto AAB;
+proc/;
+
+
+
+label AAB 
+hold 1000;
+ts cons.ctf;
+loop 0 ('grupos'-1)
+	k0; sh k#1..ctf; 
+	set arboles[#1] (ntrees+1);
+	ne*; save/;
+stop;
+ts/;
+k0;
+sh cons.ctf;
+var: tmp;
+set difspr[0] 0;
+loop 1 ('grupos'-1)
+	set tmp ((#1)-1);
+	set difspr [#1] sprdiff [#1 'tmp' 100x200]; 
+end;
+stop;
+set agree[0] 0;
+set nodcons[0] 0;
+loop 1 ('grupos'-1)
+	k0;
+	set tmp ((#1)-1);
+	sh k'tmp'.ctf; sh k#1..ctf;
+	prunn!*; tchoose/;
+	set agree[#1] ((tnodes[0])+2);
+	k0;
+	sh k'tmp'.ctf; sh k#1..ctf;
+	ne*; tchoose/; set nodcons[#1] tnodes[0];
+end;
+stop;
+macfloat 3;
+log/;	/* Just in case...*/
+macreport-;
+log out.txt;
+quote archivo, distref, kref, length, trees, fit, difspr, agree, nodcons;
+loop 0 ('grupos'-1)
+     quote  k#1, 'distref[#1]', 'kref[#1]', 'largo[#1]', 'arboles[#1]', 'fits[#1]', 'difspr[#1]', 'agree[#1]', 'nodcons[#1]';
+stop;
+log/;
+proc/;
+
+
+

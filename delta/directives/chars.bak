@@ -1,0 +1,647 @@
+*SHOW ~ Character list.
+
+*CHARACTER LIST
+
+#1. <figures>/
+
+#2. <Type of description>/
+       1. \b{}REDESCRIPTION\b0{}/
+       2. \b{}DESCRIPTION\b0{}/
+
+#3. \b{}Body size \b0{}(length of elytra + pronotum)/
+       mm/
+
+#4. \b{}Rostrum\b0{} <length in relation to pronotum>/
+       times as long as pronotum/
+
+#5. \b{}Rostrum\b0{} <ratio apex width/base width>/
+       times wider in apex than in base/
+
+#6. \b{}Rostrum\b0{} <integument color>/
+       1. with integument yellowish to black/
+       2. with integument yellowish to dark brown/
+       3. with integument reddish to dark brown/
+       4. with integument brown to black/
+       5. with black integument, sometimes redish on apex/
+       6. with black integument/
+
+#7. \b{}Rostrum\b0{} <number of carinae>/
+       1. with two or three longitudinal carinae/
+       2. with three longitudinal carinae <, one central and a pair
+          dorso-lateral>/
+       3. with seven longitudinal carinae (including a pair along the scrobes)
+          <. one central, two dorso-lateral pairs and a pair along the scrobes>/
+
+#8. \b{}Rostrum\b0{} <distinctiviness of carinae>/
+       1. the pair of carinae along the scrobes indistinct near the base/
+       2. the two lateralmost pairs of carinae indistinct near the base/
+       3. indistinct/
+       4. distinct throughout their length/
+
+#9. \b{}Rostrum \b0{}scrobes <direction>/
+       1. parallel to rostrum/
+       2. obliquely directed ventrally/
+
+#10. \b{}Rostrum\b0{} apex <whether covered by scales>/
+       1. covered by wide scales, similar to those between carinae/
+       2. covered by thin and elongated scales/
+       3. covered by microsetae/
+
+#11. \b{}Rostrum\b0{} areas between dorsal carinae covered by <scale color>/
+       1. yellowish scales/
+       2. yellowish to orange scales/
+       3. brown scales/
+       4. yellowish to black scales/
+
+#12. \b{}Rostrum\b0{} <areas between dorsal carinae covered by> <scale shape>/
+       1. scales dense and wide, only slightly thinner towards the apex of
+          rostrum/
+       2. scales wide and distinctively thinner towards the apex of rostrum/
+       3. scales thin to setiform at base and setiform at the apex of rostrum/
+       4. scales setiform throughout the apex of rostrum/
+
+#13. \b{}Rostrum\b0{} <areas between dorsal carinae covered by> <direction of
+          scales>/
+       1. directed toward the central carina/
+       2. directed toward the base of the rostrum/
+
+#14. \b{}Eyes\b0{} <whether measured>/
+       1. /
+       2. proportions not measured/
+
+#15. \b{}Eyes \b0{}<height to width ratio>/
+       times as high as wide/
+
+#16. \b{}Eyes\b0{} <ratio distance above/below>/
+       times more separated above than below/
+
+#17. \b{}Head \b0{}<integument color>/
+       1. with integument black or brown, similar to or darker than rostrum/
+       2. with integument brown to black, similar to or lighter than rostrum/
+       3. with brown integument, similar to or lighter than rostrum/
+       4. with integument brown, lighter than rostrum/
+       5. with integument with same color as rostrum/
+
+#18. \b{}Head\b0{} <density of scales>/
+       1. covered by large scales only around the eyes and on the sides and
+          microsetae elsewhere/
+       2. entirely covered by scales/
+
+#19. \b{}Head\b0{} scales <direction of scales>/
+       1. directed to a point basal to the inter-ocular fovea/
+       2. directed to the base of rostrum/
+       3. directed to the inter-ocular fovea/
+
+#20. \b{}Head\b0{} <color of scales>/
+       1. varying from black to yellow/
+       2. usually black to dark brown, sometimes scales on the sides and above
+          eyes yellow to orange/
+       3. usually black to dark brown, sometimes scales on the sides and above
+          eyes yellow/
+       4. yellow to orange/
+       5. with yellowish scales and dark microsetae/
+       6. yellow/
+
+#21. \b{}Antennae\b0{} with scape <\b{}curvature\b0{}>/
+       1. straight/
+       2. curved/
+
+#22. \b{}Antennae\b0{} <scape, whether reaching eyes>/
+       1. clearly reaching beyond the anterior margin of eyes/
+       2. barely reaching the anterior margin of eyes/
+       3. clearly not reaching the anterior margin of eyes/
+
+#23. \b{}Antennae \b0{}first antennomere of funicle <width in realtion to the
+          second>/
+       1. about 1.5 times wider than the second/
+       2. only slightly wider than the second/
+
+#24. \b{}Antennae\b0{} second antennomere of funicle <length in relation to the
+          first>/
+       1. shorter than the first/
+       2. about as long as the first/
+       3. longer than the first/
+
+#25. \b{}Antennae\b0{} <second antennomere of funicle, length in relation to the
+          third>/
+       1. and about as long as the third/
+       2. and about 1.5 times as long as the third/
+       3. and about 2 times as long as the third/
+
+#26. \b{}Antennae\b0{} sixth antennomere of the funicle <shape>/
+       1. wider than long/
+       2. as wide as long/
+       3. longer than wide/
+
+#27. \b{}Antennae\b0{} <sixth antennomere of the funicle, width in relation to
+          the club>/
+       1. and narrower than the club/
+       2. and approximately as wide as the club/
+
+#28. \b{}Antennae \b0{}club <length in relation to the funicle>/
+       1. shorter than the last antennomere of the funicle/
+       2. approximately as long as the last two antennomeres of the funicle/
+       3. approximately as long as the three last antonnomeres of the funicle/
+       4. as long as the four last antennomeres of the funicle/
+       5. as long as the funicle/
+
+#29. <Mouth parts, whether observed>/
+       1. \b{}Mouthparts\b0{} not observed/
+       2. observed/
+
+#30. \b{}Left mandible\b0{} <outer margin>/
+       1. with outer margin straight/
+       2. with outer margin slightly sinuate/
+       3. with outer margin strongly sinuate/
+
+#31. \b{}Left mandible\b0{} <number of dorsal setae>/
+       1. dorsally with one large and one small seta/
+       2. dorsally with one large and two small setae/
+       3. with one dorsal seta/
+
+#32. \b{}Left mandible\b0{} outer tooth <whether in a sharp angle>/
+       1. forming a sharp angle with the mandible margin/
+       2. evenly connected to the mandible margin, not forming a sharp angle/
+
+#33. \b{}Left mandible \b0{}<outer tooth>/
+       1. with strongly acute apex/
+       2. with somewhat blunt apex/
+       3. with rounded apex/
+       4. with truncated apex/
+
+#34. \b{}Left mandible\b0{} with inner tooth/
+       1. absent or weakly developed/
+       2. well-developed/
+
+#35. \b{}Left mandible \b0{}molar region/
+       1. straight/
+       2. slightly concave/
+
+#36. \b{}Left maxilla \b0{}with stipe <shape>/
+       1. subquadrate/
+       2. moderately elongated/
+       3. strongly elongated/
+
+#37. \b{}Left maxilla \b0{}with stipe <presence of setae>/
+       1. with a long ventral seta/
+       2. glabrous/
+
+#38. \b{}Left maxilla \b0{}galeo-lacinial complex <length in relation to the
+          palp>/
+       1. not reaching the apex of the first palpomere/
+       2. almost reaching the apex of the first palpomere/
+       3. extending beyond the apex of the first palpomere/
+
+#39. \b{}Left maxilla \b0{}palpiger <shape>/
+       1. with elongated vental region/
+       2. with ventral region approximately as long as wide/
+       3. with transversal ventral region/
+
+#40. \b{}Left maxilla\b0{} <palpiger, shape of base in dorsal region>/
+       1. with base of dorsal region forming an acute angle/
+       2. with base of dorsal region forming an abtuse angle/
+
+#41. \b{}Left maxilla\b0{} palpomere I <number of setae>/
+       1. without apical setae/
+       2. with two apical setae/
+       3. with three apical setae/
+
+#42. \b{}Left maxilla \b0{}<palpomere I, length of setae>/
+       1. with apical setae shorter than the length of palpomere I/
+       2. with apical setae longer than the length of palpomere I/
+
+#43. \b{}Left maxilla\b0{} palpomere II <length>/
+       1. shorter than palpomere I/
+       2. approximately as long as palpomere I/
+       3. longer than palpomere I/
+
+#44. \b{}Labium \b0{}with prementum <width in relation to postmentum>/
+       1. almost as wide as postmentum/
+       2. slightly narrower than postmentum/
+       3. distinctively narrower than postmentum/
+
+#45. \b{}Labium <\b0{}prementum> <overall shape>/
+       1. almost as long as wide/
+       2. about 1.5 times as wide as long/
+       3. about 2 times as wide as long/
+
+#46. \b{}Labium\b0{} <prementum> with lateral margins <shape>/
+       1. parallel in median region/
+       2. divergent in median region/
+
+#47. \b{}Labium\b0{} <prementum> <apical-lateral lobes, presence>/
+       1. angled in lateral-apical region/
+       2. with a right angle in lateral-apical region/
+       3. lobed in lateral-apical region/
+
+#48. \b{}Labium\b0{} <prementum, setae>/
+       1. with sparse setae, not arranged in rows/
+       2. with two oblique rows of setae in dorsal region/
+       3. with a median longitudinal row of short setae in dorsal region/
+       4. with a median longitudinal row of long setae in dorsal region/
+       5. with very long setae on the sides of dorsal region/
+
+#49. \b{}Labium \b0{}ligula <presence and length>/
+       1. absent/
+       2. present, but inconspicuous/
+       3. present and shorter than half of the length of prementum/
+       4. present and about as long as half the length of prementum/
+
+#50. \b{}Labium\b0{} palps <distance between palps>/
+       1. separated by less than half the width of palpomere I/
+       2. separated by about half the width of palpomere I/
+       3. separated by about the width of palpomere I/
+
+#51. \b{}Labium \b0{}palpomere I <shape>/
+       1. longer than wide/
+       2. transversal/
+       3. approximately as long as wide/
+
+#52. \b{}Labium \b0{}palpomere II <length in relation to palpomere III>/
+       1. shorter than palpomere III/
+       2. approximately as long as palpomere III/
+       3. longer than palpomere III/
+
+#53. \b{}Labium \b0{}palpomere III <number of lateral setae>/
+       1. without lateral setae/
+       2. with one lateral seta/
+       3. with two lateral setae/
+
+#54. \b{}Pronotum\b0{} width at base <ratio width/length>/
+       times pronotum length/
+
+#55. \b{}Pronotum\b0{} <shape at base>/
+       1. base slightly lobed at the middle/
+       2. base not lobed at the middle/
+
+#56. \b{}Pronotum\b0{} lateral margins in dorsal view <shape of margins>/
+       1. parallel at base and regularly curved to apex/
+       2. subprallel at base and regularly curved to apex/
+       3. convergent and regularly curved from base to apex/
+       4. parallel from base to median region, then convergent to apex/
+       5. subparallel at base and regularly curved to apex, sometimes with a
+          subtle inflexion in the median region/
+       6. convergent from base to apex, with an inflexion in the median region/
+       7. strongly convergent from base to apex, with an inflexion in the median
+          region/
+
+#57. \b{}Pronotum\b0{} <lateral margin> <whether with constriction at apex>/
+       1. without apical constriction/
+       2. with a slight apical constriction/
+
+#58. \b{}Pronotum\b0{} integument <color>/
+       1. uniformly brown to black/
+       2. black in areas with dark scales and brown otherwise/
+       3. uniformly brown or black only under black scales/
+       4. brown, similar to the head/
+       5. brown, lighter than the head/
+
+#59. \b{}Pronotum\b0{} <vestiture>/
+       1. covered by scales on the sides and microsetae on the disc/
+       2. entirely covered by scales/
+
+#60. \b{}Pronotum\b0{} <scale color>/
+       1. <another pattern>/
+       2. with uniformly yellowish scales/
+
+#61. \b{}Pronotum\b0{} <color pattern, if complex>/
+
+#62. \b{}Pronotum\b0{} scales on the disk <direction>/
+       1. directed to the center or to the basal half/
+       2. directed to the center or to the apex/
+       3. directed to the apex/
+       4. mostly directed to the base/
+       5. with basal half directed to the base/
+
+#63. \b{}Profemur\b0{} <lateral view> <shape>/
+       1. approximately 3 times as long as wide/
+       2. approximately 3.5 times as long as wide/
+       3. approximately 4 times as long as wide/
+       4. approximately 8 times as long as wide/
+
+#64. \b{}Profemur\b0{} <lateral view> dorsal margin/
+       1. with curvature less pronounced than ventral margin/
+       2. with curvature about as pronounced as ventral margin/
+
+#65. \b{}Profemur\b0{} <lateral view> tooth <whether well-defined>/
+       1. well-defined/
+       2. not present but inconspicuous/
+
+#66. \b{}Profemur\b0{} <lateral view> <width in relation to tibia>/
+       1. about 2 times as wide as protibia/
+       2. about 2.5 times as wide as protibia/
+       3. about 3 times as wide as protibia/
+
+#67. \b{}Protarsus\b0{}/
+       1. not observed/
+       2. intact/
+
+#68. \b{}Protarsus\b0{} with tarsomere I <length>/
+       1. more than 3 times as long as tarsomere III/
+       2. dinstinctively longer than tarsomere III/
+       3. about as long as tarsomere III/
+
+#69. \b{}Protarsus\b0{} tarsomeres I and II <aspect ratio>/
+       1. longer than wide/
+       2. as long as wide/
+       3. slightly wider than long/
+       4. extremely expanded laterally (especially tarsomere II)/
+       5. much longer than wide, together about as long as tibia/
+
+#70. \b{}Protarsus \b0{}<ventral pilosity>/
+       1. without short and dense setae on the ventral surface, only sparse and
+          long setae on the sides/
+       2. with short and dense setae on the ventral surface and sparse and long
+          setae on the sides/
+       3. with short and dense setae on the ventral surface, without sparse and
+          long setae on the sides/
+
+#71. \b{}Scutellum \b0{}<aspect ratio>/
+       times longer than wide/
+
+#72. \b{}Scutellum\b0{} integument <color>/
+       1. brown, lighter than elytra/
+       2. brown, the same color as elytra/
+       3. brown, sometimes darker than elytra/
+       4. brown to black, usually darker than elytra/
+       5. brown to black/
+       6. black/
+
+#73. \b{}Scutellum\b0{} scales <color>/
+       1. yellowish at the base and on the sides and brown in the middle/
+       2. yellowish on the sides and brown to black in the middle/
+       3. yellowish/
+       4. yellow to orange/
+       5. brown/
+       6. black/
+
+#74. \b{}Elytra\b0{} <width in relation to pronotum>/
+       times wider than pronotum/
+
+#75. \b{}Elytra\b0{} <aspect ratio>/
+       times longer than wide/
+
+#76. \b{}Elytra \b0{}<length in relation to pronotum>/
+       times longer than pronotum/
+
+#77. \b{}Elytra\b0{} humeri, dorsal view, <shape>/
+       1. rounded/
+       2. with a well-defined angle/
+
+#78. \b{}Elytra\b0{} lateral margins <shape>/
+       1. distinctively wider at the middle/
+       2. subparallel, only slightly wider at the middle/
+
+#79. \b{}Elytra\b0{} dorsal region <scale color>/
+       1. <complex pattern>/
+       2. with yellowish scales/
+
+#80. \b{}Elytra\b0{} <color pattern>/
+
+#81. \b{}Elytra\b0{} epipleura <degree of inflexion>/
+       1. with a distinct inflexion on interval IX/
+       2. generally with a distinct inflexion on interval IX, but sometimes with
+          a weak inflexion/
+       3. with a weak inflexion on interval IX/
+       4. without an inflexion on interval IX/
+
+#82. \b{}Elytra <epipleura> \b0{}<scale color>/
+       1. <other>/
+       2. covered by yellowish or dark scales/
+       3. covered by dark scales/
+       4. covered by scales with the same color as disk/
+
+#83. \b{}Ventral region\b0{} integument <color>/
+       1. with color varying from brown to black/
+       2. with color varying from yellowish to black/
+       3. with similar color to dorsal region/
+
+#84. \b{}Ventral region \b0{}scales <color>/
+       1. with color similar to dorsal region, or slightly lighter/
+       2. distinctively lighter than those in pronotum/
+       3. black in the proepisternum and mesepimeron and yellowish to white,
+          lighter than those in pronotum, elsewhere/
+
+#85. \b{}Hypomeron \b0{}<density of scales>/
+       1. covered by sparse scales, with most of the integument visible/
+       2. densely covered by mostly non-overlapping scales/
+       3. densely covered by overlapping scales/
+
+#86. \b{}Hypomeron\b0{} <scale shape>/
+       1. covered by scales narrower than those of pronotum/
+       2. covered by scales narrower or similar to those in pronotum/
+       3. covered by scales similar in shape to those in pronotum/
+       4. covered by scales larger and wider than those in pronotum/
+
+#87. \b{}Hypomeron\b0{} <kind of scales>/
+       1. scales with apex truncated to acuminate/
+       2. scales with acuminate apex/
+       3. scales with truncated apex/
+       4. scales setiform/
+
+#88. \b{}Hypomeron\b0{} scales next to the coxal cavities <size in relation to
+          other scales>/
+       1. larger/
+       2. with size similar to others/
+
+#89. \b{}Prosternum\b0{} length <length in relation to coxal width>/
+       times the width of coxae/
+
+#90. \b{}Prosternum\b0{} postocular lobes <shape>/
+       1. indistinct, with apical-lateral margin of prothorax regularly curved
+          to slightly sinuate/
+       2. distinct, with the apical lateral margin of prothorax clearly sinuate/
+
+#91. \b{}Prosternum\b0{} <scales>/
+       1. covered by overlapping scales/
+       2. densely convered by mostly non-overlapping scales/
+       3. covered by sparse scales/
+
+#92. \b{}Prosternum\b0{} <scales, shape>/
+       1. with scales wider than those in pronotum/
+       2. with scales similar to or slightly wider than those in pronotum/
+       3. with scales similar to those in pronotum/
+       4. with scales narrower than those in pronotum/
+
+#93. \b{}Prosternum\b0{} <scales, apex>/
+       1. with acuminate apex/
+       2. with truncated apex/
+
+#94. \b{}Metepisternum\b0{} <scales, density>/
+       1. entirely covered by overlapping scales/
+       2. covered by non-overlapping scales, or overlapping only next to the
+          anterior margin/
+
+#95. \b{}Metasternum\b0{} <concavity>/
+       1. with a distinct central concavity/
+       2. with a subtle central concavity/
+       3. without a central concavity/
+
+#96. \b{}Metasternum\b0{} <vestiture of concavity>/
+       1. with very short setae in the center/
+       2. with long setae in the center/
+       3. covered by scales in the center/
+
+#97. \b{}Ventrites III-V\b0{} <vestiture>/
+       1. covered by recumbent setae/
+       2. covered by erect setae/
+       3. covered by narrow recumbent scales and erect setae/
+       4. covered by narrow scales/
+
+#98. \b{}Aedeagus\b0{} <ratio length/width>/
+       1. about 3 times as long as wide/
+       2. between 2 and 2.5 times as long as wide/
+       3. less than 2 times as long as wide/
+
+#99. \b{}Aedeagus\b0{} <ratio length/height>/
+       1. about 4 times as long as high/
+       2. about 5 times as long as high/
+       3. about 6 times as long as high/
+       4. about 7 times as long as high/
+       5. about 8 times as long as high/
+
+#100. \b{}Aedeagus\b0{} <\b{}whether wider at opening\b0{}>/
+       1. not wider at opening/
+       2. slightly wider at opening/
+       3. distinctly wider at opening/
+
+#101. \b{}Aedeagus\b0{} <shape at apex>/
+       1. without an anterior process/
+       2. with an acute anterior process/
+       3. with a truncated anterior process/
+       4. with a bilobed anterior process/
+
+#102. \b{}Aedeagus\b0{} ventral plate/
+       1. thin and barely sclerotized/
+       2. strongly sclerotized/
+
+#103. \b{}Aedeagus\b0{} <ventral plate, length>/
+       1. extending to approximately 0.2 times the length of apodemes/
+       2. extending to approximately 0.3 times the length of apodemes/
+       3. extending to approximately 0.4 times the length of apodemes/
+       4. extending to approximately half the length of apodemes/
+
+#104. \b{}Apodemes\b0{} <length in relation to aedeagus>/
+       1. about 1.5 times as long as aedeagus/
+       2. about 2 times as long as aedeagus/
+       3. about 2.5 times as long as aedeagus/
+       4. about 3 times as long as aedeagus/
+       5. about 4 times as long as aedeagus/
+
+#105. \b{}Endophalus\b0{} <sclerites>/
+       1. with a pair of L-shaped sclerites anterior to the basal sclerite/
+       2. with a pair of elongated sclerites anterior to the basal sclerite/
+       3. with a pair of sub-spherical sclerites anterior to the basal sclerite/
+       4. with a membranous and slightly sclerotized area anterior to the basal
+          sclerite/
+       5. with two pairs of membronous pockets containing microtrichae next to
+          the basal sclerite/
+       6. with one pair of membronous pockets containing microtrichae next to
+          the basal sclerite/
+
+#106. \b{}Endophalus\b0{} <whether with a sclerotized area in the middle>/
+       1. with a longitudinal slighlty sclerotized area next to the posterior
+          margin of aedeagus/
+       2. without sclerotized area/
+
+#107. Endophalus <position of microtrichae>/
+       1. with microtrichae of the apical region organized in a transversal
+          emarginated band, apparently the result of folds in membranes in this
+          area/
+       2. with microtrichae of the median region organized in a pair of bands,
+          apparently the result of folds in membranes in this area/
+       3. with microtrichae of the apical region organized in a pair of bands,
+          apparently the result of folds in membranes in this area/
+       4. with microtrichae of the apical region not organized in bands/
+
+#108. \b{}Body size\b0{}/
+       mm/
+
+#109. \b{}Rostrum\b0{} <length in relation to pronotum>/
+       times longer than pronotum/
+
+#110. \b{}Rostrum\b0{} width at apex <width ratio apex/base>/
+       times width at base/
+
+#111. \b{}Eyes\b0{} <whether measured>/
+       1. /
+       2. not measured/
+
+#112. \b{}Eyes\b0{} <ratio height/width>/
+       times as high as wide/
+
+#113. \b{}Eyes\b0{} <ratio separation above/below>/
+       times more separated above than below/
+
+#114. \b{}Pronotum\b0{} <ratio width/length>/
+       times as wide at base as long/
+
+#115. \b{}Antennae \b0{}with scape <curvature>/
+       1. similar to males/
+       2. straight/
+
+#116. \b{}Pronotum\b0{} lateral margions in dorsal view <shape>/
+       1. parallel to subparallel at based and evenly curved to apex/
+       2. parallel at based and evenly curved to apex\par{}/
+       3. converging from the base, with a marked inflexion at the median region
+          and a slight apical constriction/
+       4. in general more parallel than in males and with alight apical
+          constriction/
+       5. converging from the base with a moderate inflexion at the middle/
+       6. similar to males/
+
+#117. \b{}Proepisternum\b0{} <scales, size>/
+       1. with scales narrower than those in pronotum/
+       2. similar to males/
+
+#118. \b{}Prosternum\b0{} <whether measured>/
+       1. measured/
+       2. not measured/
+
+#119. \b{}Prosternum\b0{} length <length in relation to coxae>/
+       times the coxal width/
+
+#120. \b{}Protarsus\b0{} <shape>/
+       1. with two most proximal tarsomeres as long as wide/
+       2. with two most proximal tarsomeres longer than wide/
+       3. with two most proximal tarsomeres longer than wide, but clearly
+          shorter than the tibia/
+       4. similar to males/
+
+#121. \b{}Protarsus\b0{} <setae>/
+       1. without long setae/
+       2. similar to males/
+
+#122. \b{}Scutelum\b0{} <ratio length/width>/
+       times as long as wide/
+
+#123. \b{}Elytra\b0{} <ratio elytra width/pronotum width>/
+       times as wide as pronotum/
+
+#124. \b{}Elytra\b0{} <ratio length/width>/
+       times as long as wide/
+
+#125. \b{}Elytra\b0{} <length in relation to pronotum>/
+       times as long as pronotum/
+
+#126. \b{}Elytra \b0{}<color>/
+       1. with color similar to males, or with basal black spots, or with
+          longitudinal black stripes, or entirely black/
+       2. similar to males/
+
+#127. \b{}Metasternum\b0{} <vestiture>/
+       1. covered with scales/
+       2. similar to males/
+
+#128. \b{}Ventrites III-V\b0{} <vestiture>/
+       1. with recumbent setae/
+       2. with recumbent narrow scales/
+       3. similar to males/
+
+#129. \b{}Ventrites III and IV\b0{} with posterior retraction <shape>/
+       1. not sinuate and restricted to the posterior end of the segment/
+       2. not sinuate and reaching the middle of the segment/
+       3. sinuate and restricted to the posterior end of the segment/
+       4. slightly sinuate and reaching the middle of the segment\par{}/
+       5. strongly sinuate and reaching the middle of the segment/
+

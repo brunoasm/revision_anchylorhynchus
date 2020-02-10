@@ -1,0 +1,30 @@
+---
+title: "Find K"
+output: html_notebook
+---
+In this notebook, we will check the results of the implied weighting sensitivity analysis.
+
+```{r}
+library(tidyverse)
+```
+
+Let's load the results.
+```{r}
+k_res = read_csv('out.txt')
+
+k_res
+```
+
+```{r}
+plot(1:nrow(k_res),k_res$difspr)
+```
+
+It seems that k25 and above correspond to the same tree. So all of these values of k should be ok. Let's use 5.0:
+
+```{r}
+k_res[25:nrow(k_res),]
+```
+
+
+
+

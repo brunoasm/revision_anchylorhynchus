@@ -1,0 +1,268 @@
+CONFOR version 3.00 (Java)
+
+M. J. Dallwitz, T.A. Paine and E.J. Zurcher
+
+CSIRO Division of Entomology, GPO Box 1700, Canberra, ACT 2601, Australia
+Phone +61 2 6246 4075. Fax +61 2 6246 4000. Email delta@ento.csiro.au
+
+Java edition ported by the Atlas of Living Australia, 2010.
+
+Translate into natural language - RTF, single file for all taxa.
+..ives/tonatr,3 *LISTING FILE tonatr.lst
+..ives/tonatr,4 
+..ives/tonatr,5 *OUTPUT DIRECTORY rtf
+..ives/tonatr,6 
+..ives/tonatr,7 *PRINT FILE descrip.rtf
+..ives/tonatr,8 
+..tives/specs,1 *SHOW ~ Dataset specifications.
+..tives/specs,2 
+..tives/specs,3 *DATA BUFFER SIZE 6450
+..tives/specs,4 
+..tives/specs,5 *NUMBER OF CHARACTERS 129
+..tives/specs,6 
+..tives/specs,7 *MAXIMUM NUMBER OF STATES 7
+..tives/specs,8 
+..tives/specs,9 *MAXIMUM NUMBER OF ITEMS 25
+..ives/specs,10 
+..ives/specs,11 *CHARACTER TYPES 1,TE 3-5,RN 7,OM 15-16,RN 24-25,OM 27,OM 36,OM 38,OM 51,OM
+..ives/specs,12   54,RN 61,TE 63,OM 71,RN 74-76,RN 80,TE 89,RN 100,OM 104,OM 108-110,RN
+..ives/specs,13   112-114,RN 119,RN 122-125,RN
+..ives/specs,14 
+..ives/specs,15 *NUMBERS OF STATES 6,5 7,3 8,4 10,3 11-12,4 17,5 19,3 20,6 22,3 24-26,3 28,5
+..ives/specs,16   30-31,3 33,4 36,3 38-39,3 41,3 43-45,3 47,3 48,5 49,4 50-53,3 56,7 58,5 62,5
+..ives/specs,17   63,4 66,3 68,3 69,5 70,3 72-73,6 81-82,4 83-85,3 86-87,4 91,3 92,4 95-96,3
+..ives/specs,18   97,4 98,3 99,5 100,3 101,4 103,4 104,5 105,6 107,4 116,6 120,4 128,3 129,5
+..ives/specs,19 
+..ives/specs,20 *IMPLICIT VALUES 14,1 29,2 57,1 67,2 106,2 111,1 115,1 116,6 117,2 118,1 120,4
+..ives/specs,21   121,2 126-127,2 128,3
+..ives/specs,22 
+..ives/specs,23 *DEPENDENT CHARACTERS 14,2:15-16 29,1:36-43:46-53 41,1:42 60,2:61 67,1:68-69
+..ives/specs,24   79,2:80 87,4:85-86:88:93 91,3:92 111,2:112-113 118,2:119
+..ives/specs,25 
+..ives/specs,26 *MANDATORY CHARACTERS 4 6-8 10-13
+..ives/specs,27 
+..ives/specs,28 *DECIMAL PLACES 3-5,1 15-16,1 54,1 71,1 74-76,1 
+..ives/specs,29  89,1 108-110,1 112-114,1 119,1 122-125,1
+..ives/specs,30  
+..ives/specs,31 *NEW PARAGRAPHS AT CHARACTERS 1-4 54 97 108 109
+..ives/specs,32  
+..ives/specs,33 *ITEM SUBHEADINGS
+..ives/specs,34 #3. MALES
+..ives/specs,35 #4. HEAD. 
+..ives/specs,36 #54. THORAX.
+..ives/specs,37 #97. ABDOMEN.
+..ives/specs,38 #108. FEMALES
+..ives/specs,39 
+..ives/specs,40 *LINK CHARACTERS 4-13 14-16 17-20 21-28 30-35 36-43
+..ives/specs,41  44-53 54-62 63-66 67-70 71-73 74-82
+..ives/specs,42 83-84 85-88 89-93 95-96 98-103 105-107
+..ives/specs,43  109-110 111-113 115-116 119-120 121-122 124-127
+..ives/specs,44  
+..ives/specs,45 
+..ives/specs,46 *REPLACE SEMICOLON BY COMMA 7-8 11-13 19-20 21-22 24-25
+..ives/specs,47  26-27 32-33 36-37 39-40 41-42 44-48 56-57 81-82 
+..ives/specs,48 86-87 91-93 102-103
+..ives/tonatr,9 *INPUT FILE specs
+..ves/tonatr,10 
+..ves/tonatr,11 *TRANSLATE INTO NATURAL LANGUAGE
+..ves/tonatr,12 
+..ves/markrtf,1 *COMMENT ~ Markup for RTF output.
+..ves/markrtf,2 
+..ves/markrtf,3 *PRINT WIDTH 0
+..ves/markrtf,4 
+..ves/markrtf,5 *TYPESETTING MARKS !
+..ves/markrtf,6 #1. <range symbol>
+..ves/markrtf,7 !\endash{}!
+..ves/markrtf,8 #2. <PRINT CHARACTER LIST: before each character (or character heading if
+..ves/markrtf,9 present)>
+..es/markrtf,10 #3. <PRINT CHARACTER LIST: before the first character (or character heading if
+..es/markrtf,11 present) (and before 2) (it was used for TYPSET tabs and indentations)>
+..es/markrtf,12 #4. <PRINT CHARACTER LIST: before a character heading>
+..es/markrtf,13 !\par\pard\plain\s10\ql\sb300\sa100\li0\fi0\keep\keepn\fs24{}!
+..es/markrtf,14 #5. <PRINT CHARACTER LIST: after a character heading>
+..es/markrtf,15 #6. <PRINT CHARACTER LIST: before each character>
+..es/markrtf,16 !\par\pard\plain\s11\ql\sb0\sa0\li705\fi-705\fs20{}!
+..es/markrtf,17 #7. <PRINT CHARACTER LIST: before a state description>
+..es/markrtf,18 !\par\pard\plain\s12\ql\sb0\sa0\li705\fi-200\fs20{}!
+..es/markrtf,19 #8. <PRINT CHARACTER LIST: before character notes>
+..es/markrtf,20 !\par\pard\plain\s13\ql\sb0\sa0\li505\fi400\fs20{}!
+..es/markrtf,21 #9. <PRINT ITEM DESCRIPTIONS: before item, with natural language>
+..es/markrtf,22 !\par\pard\plain\ql\sb300\sa0\keepn\fs20{}!
+..es/markrtf,23 #10. <PRINT ITEM DESCRIPTIONS: before item, without natural language>
+..es/markrtf,24 !\par\pard\plain\ql\sb300\sa0\keepn\fs20{}!
+..es/markrtf,25 #11. <PRINT ITEM DESCRIPTIONS: after item name>
+..es/markrtf,26 !\par\pard\plain\ql\sb0\sa0\fs20{}!
+..es/markrtf,27 #12. <not used>
+..es/markrtf,28 #13. <NATURAL LANGUAGE: before each item (or item heading if present)>
+..es/markrtf,29 #14. <NATURAL LANGUAGE: before item name if at start of a file>
+..es/markrtf,30 !\pard\plain\s21\ql\sb0\sa100\li0\fi0\keep\keepn\b\fs24{}!
+..es/markrtf,31 #15. <NATURAL LANGUAGE: after item name>
+..es/markrtf,32 !\fs20\b0{}!
+..es/markrtf,33 #16. <NATURAL LANGUAGE: before a character which begins a new paragraph>
+..es/markrtf,34 !\par\pard\plain\qj\s22\sb0\sa0\li0\fi340\fs20{}!
+..es/markrtf,35 #17. <NATURAL LANGUAGE: before an emphasized feature>
+..es/markrtf,36 !\i{}!
+..es/markrtf,37 #18. <NATURAL LANGUAGE: after an emphasized feature>
+..es/markrtf,38 !\i0{}!
+..es/markrtf,39 #19. <NATURAL LANGUAGE: before an emphasized character>
+..es/markrtf,40 !\b\i{}!
+..es/markrtf,41 #20. <NATURAL LANGUAGE: after an emphasized character>
+..es/markrtf,42 !\i0\b0{}!
+..es/markrtf,43 #21. <NATURAL LANGUAGE: before an emphasized state description>
+..es/markrtf,44 !\b\i{}!
+..es/markrtf,45 #22. <NATURAL LANGUAGE: after an emphasized state description>
+..es/markrtf,46 !\i0\b0{}!
+..es/markrtf,47 #23. <PRINT ITEM NAMES: before item name>
+..es/markrtf,48 !\par\pard\plain\ql\sb0\sa0\fs20{}!
+..es/markrtf,49 #24. <PRINT UNCODED CHARACTERS: before list of uncoded characters>
+..es/markrtf,50 !\par\pard\ql\sb200\sa0{}!
+..es/markrtf,51 #25. <NATURAL LANGUAGE: before a non-comment section of an item name>
+..es/markrtf,52 #26. <NATURAL LANGUAGE: after non-comment section of an item name>
+..es/markrtf,53 #27. <NATURAL LANGUAGE: after each item; precedes mark 29>
+..es/markrtf,54 #28. <NATURAL LANGUAGE: at the start of each file. Current settings are
+..es/markrtf,55 Australian English, A4 paper, margins 2.5cm. For US English, Letter paper,
+..es/markrtf,56 margins 1", substitute the following.
+..es/markrtf,57 \deflang1033\paperw12242\paperh15842\margl1440\margr1440\margt1440\margb1440{} >
+..es/markrtf,58 !{\rtf1\ansi\ansicpg1252\uc1\deff0{}
+..es/markrtf,59 \deflang3081\paperw11906\paperh16838\margl1418\margr1418\margt1418\margb1418{}
+..es/markrtf,60 {\fonttbl
+..es/markrtf,61 {\f0\froman\fcharset0\fprq2{}Times New Roman;}
+..es/markrtf,62 {\f1\froman\fcharset2\fprq2{}Symbol;}
+..es/markrtf,63 {\f2\fswiss\fcharset0\fprq2{}Arial;}
+..es/markrtf,64 }
+..es/markrtf,65 {\stylesheet
+..es/markrtf,66 {\qj\fi340\fs20\snext0{}Normal;}
+..es/markrtf,67 {\s1\qc\sb500\sa100\keepn\b\f2\fs32\kerning28\sbasedon0\snext0{}Heading 1;}
+..es/markrtf,68 {\s2\qc\sb500\sa100\keepn\b\f2\fs28\kerning28\sbasedon0\snext0{}Heading 2;}
+..es/markrtf,69 {\s3\ql\sb500\sa100\keepn\b\f2\fs24\sbasedon0\snext0{}Heading 3;}
+..es/markrtf,70 {\s6\ql\sb0\sa0\li340\fi-340\fs20\sbasedon0{}References;}
+..es/markrtf,71 {\s10\ql\sb300\sa100\li0\fi0\keep\keepn\fs24\sbasedon0{}Character Heading;}
+..es/markrtf,72 {\s11\ql\sb0\sa0\li705\fi-705\fs20\sbasedon0{}Feature;}
+..es/markrtf,73 {\s12\ql\sb0\sa0\li705\fi-200\fs20\sbasedon0{}State;}
+..es/markrtf,74 {\s13\ql\sb0\sa0\li505\fi400\fs20\sbasedon0{}Character Note;}
+..es/markrtf,75 {\s20\qc\sb300\sa0\li0\fi0\keep\keepn\fs24\sbasedon0{}Taxon Heading;}
+..es/markrtf,76 {\s21\ql\sb300\sa100\li0\fi0\keep\keepn\b\fs24\sbasedon0{}Taxon Name;}
+..es/markrtf,77 {\s22\qj\sb0\sa0\li0\fi340\fs20\sbasedon0{}Description;}
+..es/markrtf,78 {\s30\ql\sb0\sa0\fi-907\li907\tx680\tqr\tldot\tx9072\fs20\sbasedon0{}Key;}
+..es/markrtf,79 {\s31\ql\sb100\sa0\fi-907\li907\tx680\tqr\tldot\tx9072\fs20\sbasedon30{}Key
+..es/markrtf,80 First Lead;}
+..es/markrtf,81 }
+..es/markrtf,82 \widowctrl{}!
+..es/markrtf,83 #29. <NATURAL LANGUAGE: after the last item in a file; follows mark 27 PRINT
+..es/markrtf,84 CHARACTER LIST: after the character list; follows mark 40 KEY: at the end of the
+..es/markrtf,85 key file; follows mark 50>
+..es/markrtf,86 !}!
+..es/markrtf,87 #30. <NATURAL LANGUAGE: before item heading>
+..es/markrtf,88 !\par\pard\plain\s20\qc\sb0\sa0\li0\fi0\keep\keepn\fs24\b{}!
+..es/markrtf,89 #31. <NATURAL LANGUAGE: after item heading>
+..es/markrtf,90 !\b0\fs20{}!
+..es/markrtf,91 #32. <NATURAL LANGUAGE: before item subheading>
+..es/markrtf,92 #33. <NATURAL LANGUAGE: after item subheading>
+..es/markrtf,93 #34. <NATURAL LANGUAGE: before output file name in index file>
+..es/markrtf,94 #35. <NATURAL LANGUAGE: between output file name and taxon name in index file>
+..es/markrtf,95 #36. <NATURAL LANGUAGE: after taxon name in index file>
+..es/markrtf,96 #37. <NATURAL LANGUAGE: before image file name in 'character for taxon images';
+..es/markrtf,97 note that absolute path for images must be set>
+..es/markrtf,98 !\par\pard\plain\s21\qc\sb300\sa0\li0\fi0\fs20\keepn{\field{\*\fldinst
+..es/markrtf,99 { INCLUDEPICTURE "D:\\\\DELTA\\\\sample\\\\images\\\\!
+..s/markrtf,100 #38. <NATURAL LANGUAGE: between image file name and subject>
+..s/markrtf,101 !" \\* MERGEFORMAT \\d }}}\par\pard\plain\s21\qj\sb200\sa0\li0\fi0\fs20\b{}!
+..s/markrtf,102 #39. <NATURAL LANGUAGE: after subject in 'character for taxon images'>
+..s/markrtf,103 !\b0{}!
+..s/markrtf,104 #40. <PRINT CHARACTER LIST: after the character list; precedes mark 29>
+..s/markrtf,105 #41. <KEY: parameters>
+..s/markrtf,106 !\par\pard\plain\s6\sb100\li340\fi-340\fs20{}\i{}Characters:\i0{} @nchar in
+..s/markrtf,107 data, @ncincl included, @ncinkey in key.
+..s/markrtf,108 \par\sb0{}\i{}Items:\i0{} @ntaxa in data, @ntincl included, @ntinkey in key.
+..s/markrtf,109 \par{}\i{}Parameters:\i0{} Rbase = @rbase Abase = @abase Reuse = @reuse Varywt =
+..s/markrtf,110 @varywt
+..s/markrtf,111 \par{}\i{}Characters included:\i0{} @cmask
+..s/markrtf,112 \par\sa100{}\i{}Character reliabilities:\i0{} @rel!
+..s/markrtf,113 #42. <KEY: first lead of first node of key>
+..s/markrtf,114 !\par\pard\plain\s30\fi-907\li907\sb240\tx680\tqr\tldot\tx9070\fs20{}@node.\tab{}@state!
+..s/markrtf,115 #43. <KEY: first lead of any node of key except the first node>
+..s/markrtf,116 !\par\pard\plain\s30\fi-907\li907\sb240\tx680\tqr\tldot\tx9070\fs20{}@node(@from).\tab{}@state!
+..s/markrtf,117 #44. <KEY: subsequent lead of any node>
+..s/markrtf,118 !\par\pard\plain\s31\fi-907\li907\sb0\tx680\tqr\tldot\tx9070\fs20{}\tab{}@state!
+..s/markrtf,119 #45. <KEY: first destination of a lead which is a taxon name>
+..s/markrtf,120 !\tab{} \b{}@to\b0{}!
+..s/markrtf,121 #46. <KEY: subsequent destination of a lead (which must be a taxon name)>
+..s/markrtf,122 !\par\pard\plain\s31\tqr\tx9070\fs20{}\tab{} \b{}@to\b0{}!
+..s/markrtf,123 #47. <KEY: after taxon name(s)>
+..s/markrtf,124 #48. <KEY: destination of a lead which is a node of the key>
+..s/markrtf,125 !\tab{} @to!
+..s/markrtf,126 #49. <KEY: after each node>
+..s/markrtf,127 #50. <KEY: at end of key; precedes mark 29>
+..s/markrtf,128 #51. <NATURAL LANGUAGE: before item name if not at start of a file>
+..s/markrtf,129 !\par\pard\plain\s21\ql\sb300\sa100\li0\fi0\keep\keepn\b\fs24{}!
+..ves/tonatr,13 *INPUT FILE markrtf
+..ves/tonatr,14 
+..ives/layout,1 *COMMENT ~ Layout for natural-language descriptions.
+..ives/layout,2 
+..ives/layout,3 *REPLACE ANGLE BRACKETS
+..ives/layout,4 
+..ives/layout,5 *OMIT CHARACTER NUMBERS
+..ives/layout,6 
+..ives/layout,7 *OMIT INNER COMMENTS
+..ives/layout,8 
+..ives/layout,9 *OMIT INAPPLICABLES
+..ves/layout,10 
+..ves/layout,11 *COMMENT Specify slot in which image links will appear in HTML descriptions.
+..ves/layout,12 There must be a corresponding character in the character list, and no data
+..ves/layout,13 should be recorded against this character in the item descriptions (the data
+..ves/layout,14 come from the TAXON IMAGES directive in the file 'timages').
+..ves/layout,15 
+..ves/layout,16 *COMMENT : CHARACTER FOR TAXON IMAGES 88
+..ves/layout,17 
+..ves/layout,18 *COMMENT : EXCLUDE CHARACTER 89
+..ves/layout,19 
+..ves/layout,20 *COMMENT : NEW PARAGRAPHS AT CHARACTERS 1-2 12 25-26 68 77-78 87-89
+..ves/layout,21 
+..ves/layout,22 *COMMENT Group characters into sentences.
+..ves/layout,23 
+..ves/layout,24 *COMMENT : LINK CHARACTERS 3-5 7-9 10-11 13-15 16-17 18-21 26-29 32-37 41-42
+..ves/layout,25 45-47:52-54 48-51 55-56 57-59 62-63 64-65 68-70 71-72 73-75 78-84
+..ves/layout,26 
+..ves/layout,27 *COMMENT Headings within in taxon descriptions. The numbers specify the
+..ves/layout,28 character before which the heading is placed.
+..ves/layout,29 
+..ves/layout,30 *COMMENT : ITEM SUBHEADINGS
+..ves/layout,31 #2. \b{}Habit, vegetative morphology\b0{}.
+..ves/layout,32 #12. \b{}Inflorescence\b0{}.
+..ves/layout,33 #25. \b{}Female-sterile spikelets\b0{}.
+..ves/layout,34 #26. \b{}Female-fertile spikelets, florets, fruit\b0{}.
+..ves/layout,35 #68. \b{}Photosynthetic pathway, leaf blade anatomy\b0{}.
+..ves/layout,36 #77. \b{}Special diagnostic feature.\b0{}
+..ves/layout,37 #78. \b{}Taxonomy, distribution\b0{}.
+..ves/layout,38 #87. \b{}Anatomical references\b0{}.
+..ves/layout,39 #88. \b{}Illustrations\b0{}.
+..ves/tonatr,15 *INPUT FILE layout
+..ves/tonatr,16 
+..tives/chars,1 *SHOW ~ Character list.
+..tives/chars,2 
+..tives/chars,3 CHARACTER LIST
+..ves/tonatr,17 *INPUT FILE chars
+..ves/tonatr,18 
+..ves/tonatr,19 *COMMENT Activate the following two directives if you have characters with
+..ves/tonatr,20 implicit values (see 'Character edit' dialog).
+..ves/tonatr,21 
+..ves/tonatr,22 *COMMENT : PRINT COMMENT
+..ves/tonatr,23 \pard\plain\s2\qc\sb500\sa400\keepn\b\f2\fs28\kerning28{} Implicit Attributes
+..ves/tonatr,24 \par\pard\plain\qj\sa300\fs20{}Unless indicated otherwise,
+..ves/tonatr,25 the following attributes are implicit throughout the descriptions,
+..ves/tonatr,26 except where the characters concerned are inapplicable.
+..ves/tonatr,27 
+..ves/tonatr,28 *COMMENT : TRANSLATE IMPLICIT VALUES
+..ves/tonatr,29 
+..ves/tonatr,30 *PRINT COMMENT
+..ves/tonatr,31 \par\pard\plain\s2\qc\sb500\sa400\keepn\b\f2\fs28\kerning28{}Descriptions
+..ves/tonatr,32 
+..tives/items,1 *SHOW ~ Item descriptions
+..tives/items,2 
+..tives/items,3 ITEM DESCRIPTIONS
+..ves/tonatr,33 *INPUT FILE items
+Normal termination.
+
+Output files - 
+   tonatr.lst
+   descrip.rtf

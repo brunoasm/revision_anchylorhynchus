@@ -1,0 +1,453 @@
+---
+title: "Plot phylogeny results"
+output: html_notebook
+---
+
+In this notebook, we will plot the phylogenies obtained with parsimony and Bayesian inference for Anchylorhynchus. We will also use the Bayesian tree with branch lengths to infer the geographical history and host change history of Anchylorhynchus.
+
+Let's first load packages.
+
+```{r}
+library(phytools)
+library(tidyverse)
+library(cowplot)
+```
+
+# Plot trees
+
+
+To facilitate tree plotting, we opened the TNT and MrBayes trees (summarized with sumtrees in dendropy) in figtree, rerooted and ladderized them, and saved as annotated nexus before opening here.
+
+```{r}
+tnt = ape::read.nexus('tnt_symboot_rooted.tre')
+plot(tnt)
+```
+
+```{r}
+mb = ape::read.nexus('mrbayes_alphasampled_consensus_rooted.tre')
+plot(mb)
+```
+
+Now let's create a cophylo object to rotate branches and maximize matches. We will then extract rotated trees to plot them with ggtree
+```{r}
+cop = cophylo(mb,tnt)
+mb = cop$trees[[1]]
+tnt = cop$trees[[2]]
+```
+
+```{r}
+plot(mb)
+plot(tnt)
+```
+
+Now let's load ggtree to make pretty plots.
+```{r}
+library(treeio)
+library(ggtree)
+```
+
+```{r}
+tnt_io = treeio::read.beast('tnt_symboot_rooted.tre')
+mb_io = treeio::read.beast('mrbayes_alphasampled_consensus_rooted.tre')
+```
+
+Now let's replace the phylo slot in both objects by the reordered phylo.
+
+```{r}
+tnt_io@phylo = tnt
+mb_io@phylo = mb
+```
+
+Let's now shorten tip labels:
+
+```{r}
+mb_io@phylo$tip.label = stringr::str_replace(mb_io@phylo$tip.label,'^(.).+_','\\1.~') %>%
+  stringr::str_c('italic(',.,')')
+
+tnt_io@phylo$tip.label = stringr::str_replace(tnt_io@phylo$tip.label,'^(.).+_','\\1.~') %>%
+  stringr::str_c('italic(',.,')')
+```
+
+For some reason, posterior probability is a factor, let's change it to continuous. Let's also remove posterior probabilities from tips
+```{r}
+mb_io@data = mb_io@data %>%
+  mutate(prob_percent = 100*as.numeric(posterior),
+         node = as.numeric(node),
+         prob_pct2 = ifelse(node <= Ntip(mb_io@phylo),
+                            NA,
+                            prob_percent))
+
+```
+
+Now let's plot each tree separately
+
+```{r}
+t1 = ggtree(mb_io, aes(color=prob_pct2), size= 0.25, ladderize = F) +
+  geom_tiplab(parse=T,
+              align=TRUE, 
+              #offset=0.3,
+              linetype='dashed', 
+              size=2.5,
+              linesize = 0.25) +
+  scale_color_viridis_c(na.value = 'black', limits= c(0,100),expand=c(0,0),name='Support') +
+  geom_treescale(x = 1, y = 5,fontsize = 2.25,width = 0.5,linesize = 0.25) +
+  xlim(c(0,5)) +
+  theme_tree() +
+  theme(legend.position = 'bottom', 
+        legend.title = element_text(size=8),
+        legend.text = element_text(size=7))
+  
+
+t1
+
+t2 = ggtree(tnt_io, aes(color=boot), size=0.25, ladderize = F) +
+  scale_x_reverse() +
+  xlim(c(19,0)) +
+  geom_tiplab(parse=T,
+              hjust = 1,
+              offset=-0.15,
+              size=2.5) +
+  scale_color_viridis_c(na.value = 'black', limits= c(0,100),expand=c(0,0),name='Support') +
+  theme_tree()
+
+t2
+```
+
+
+Let's now plot the two together as a figure using cowplot:
+
+```{r}
+lg = cowplot::get_legend(t1)
+p = cowplot::plot_grid(t1 + theme(legend.position="none"),
+                   t2 + theme(legend.position="none"),
+                   align = 'vh',
+                    labels = LETTERS[1:2],
+           nrow = 1) %>%
+  plot_grid(lg, ncol = 1, rel_heights = c(1, .15))
+p
+ggsave('trees.pdf',p,'pdf',width=168,height=120,units = 'mm',useDingbats=F)
+```
+
+
+
+
+# Characters
+
+How many characters are autapomorphies? First, let's parse the character matrix as a tidy table.
+```{r}
+chars = scan('anchylorhynchus_chars.txt',what = character(),sep = '\n') %>%
+  str_split(' ',simplify = T) %>%
+  as_tibble() %>%
+  rowwise %>%
+  mutate(chars = str_split(V2,'[\\(\\)]') %>%
+           purrr::map(~ifelse(str_detect(.x,','),.x,str_split(.x,''))) %>% 
+           unlist %>%
+           list(.)
+         ) %>%
+  select(species=V1, chars) %>%
+  tidyr::unnest(chars) %>%
+  mutate(character=rep(1:114,30)) %>%
+  mutate(chars = na_if(chars,'?'),
+         chars = na_if(chars,'-'),
+         chars = str_split(chars,',')) %>%
+  rename(state = chars,
+         char = character)
+chars
+```
+
+Now, its easy to do statistics on the matrix. For example, how many characters are binary?
+
+```{r}
+chars %>%
+  group_by(char) %>%
+  summarise(all_states = na.exclude(unique(unlist(state))) %>% length()) %>%
+  filter(all_states == 2) %>%
+  nrow
+```
+
+And how many are not binary?
+
+```{r}
+chars %>%
+  group_by(char) %>%
+  summarise(all_states = na.exclude(unique(unlist(state))) %>% length()) %>%
+  filter(all_states > 2) %>%
+  nrow
+```
+
+How much missing data is there?
+
+```{r}
+nrow(filter(chars,is.na(state))) / nrow(chars)
+```
+
+How many were polymorphic?
+```{r}
+nstates = chars %>% 
+  unnest(state) %>%
+  group_by(species,char) %>%
+  summarise(Nst=n()) %>%
+  group_by(Nst) %>%
+  summarise(N = n()) 
+
+(sum(filter(nstates,Nst>1) %>% pull(N)) )/  sum(nstates$N)
+```
+
+How many binary traits are autapomorhies?
+
+```{r}
+bin = chars %>%
+  group_by(char) %>%
+  summarise(all_states = na.exclude(unique(unlist(state))) %>% length()) %>%
+  filter(all_states == 2) %>% 
+  pull(char) %>%
+  unique()
+
+chars %>%
+  filter(char %in% bin) %>%
+  filter(!is.na(state)) %>%
+  unnest(state) %>%
+  group_by(char,state) %>%
+  summarise(N= n()) %>%
+  filter(N==1) %>%
+  nrow
+```
+
+We will now plot the synapomorphies for each not as inferred by TNT. First, we generated a table based on TNT output (command `apo- ;`) relating each state change to a node. Unfortunately, I do not know how to make TNT output a tree with node numbers, so I had to manually associate each no to its constituent species. This was easier to do by also using `apo [ 0.'i' ;`, which plotted the same synapomorphies on an ascii tree. Let's read the table. We will only plot synapomorphies for **Anchylorhynchus** and the clades within.
+
+```{r}
+syn = read_csv('tnt_synapomorphies.csv')
+syn
+```
+
+Let's now, for each node, create a text condensing all character changes. For all tips except A. camposi, we will keep everything in one line. For the others, we will join 5 transtions per line.
+```{r}
+syn = syn %>%
+  group_by(tips) %>%
+  mutate(group = rep(1:10,each=5)[1:n()]) %>%
+  group_by(tips,group) %>%
+  summarize(text = str_c(character,':',start,'>',end,collapse='; ')) %>%
+  group_by(tips) %>%
+  summarize(text = str_c(text,collapse='\n')) %>%
+  ungroup %>%
+  mutate(text = ifelse(str_detect(tips,',')  | 
+                         str_detect(tips,'camposi'),
+                          text,
+                          str_replace(text,'\n',';'))
+          )
+```
+
+
+Now let's associate species with nodes in the parsimony tree.
+```{r}
+find_node = function(x){
+  tips = str_split(x,pattern=',',simplify = T) %>%
+    str_replace('Anchylorhynchus_','A.~') %>%
+    str_c('italic(',.,')')
+  
+  node = ape::getMRCA(tnt_io@phylo,tips)
+  
+  if (is.null(node)){
+    return(which(tnt_io@phylo$tip.label == tips))
+  } else{
+    return(node)
+  }
+}
+
+syn = syn %>%
+  rowwise() %>%
+  mutate(node = find_node(tips)) %>%
+  mutate(node = as.character(node)) %>%
+  select(node,text)
+
+syn
+```
+
+Let's now add text as a column in the ggtree data object.
+
+```{r}
+tnt_w_chars = tnt_io
+
+tnt_w_chars@data = tnt_w_chars@data %>%
+  right_join(syn)
+
+tnt_w_chars@phylo$edge.length = tnt_w_chars@phylo$edge %>%
+  as_tibble() %>%
+  select(V2) %>%
+  rename(node=V2) %>%
+  mutate(node = as.character(node)) %>%
+  left_join(syn) %>%
+  mutate(s_length = str_length(text) + 5) %>%
+  select(node,s_length) %>%
+  mutate(s_length = ifelse(is.na(s_length),5,s_length)) %>%
+  pull(s_length)
+
+
+heights = phytools::nodeHeights(tnt_w_chars@phylo)
+diff_h = max(heights[,2]) - heights[,2]
+
+for (i in 1:Ntip(tnt_w_chars@phylo)) {
+  row = which(tnt_w_chars@phylo$edge[,2] == i)
+  tnt_w_chars@phylo$edge.length[row] = tnt_w_chars@phylo$edge.length[row] + diff_h[row]
+}
+
+
+  
+```
+
+Let's now plot all transitions:
+```{r}
+last_node = ape::getMRCA(phy = tnt_w_chars@phylo,c('italic(A.~bicolor)','italic(A.~albidus)'))
+
+p = ggtree(tnt_w_chars, size=0.25, ladderize = F) +
+  xlim(c(110,620)) +
+  geom_tiplab(parse=T,
+              hjust = 0,
+              offset=-0.15,
+              size=2.5) +
+  ylim(0,25) +
+  scale_color_viridis_c(na.value = 'black', limits= c(0,100),expand=c(0,0),name='Support') +
+  theme_tree()
+
+xy_anc = p$data %>%
+  filter(node == last_node) %>%
+  select(x,y) %>%
+  mutate(xend = 110, yend = y)
+
+p +
+  geom_segment(data=xy_anc, aes(x=x, y=y,xend=xend,yend=yend),size=0.25) +
+  geom_label(aes(label=text), fill='lightgreen',size=1.5,hjust=1,nudge_x = -1) +
+
+ggsave(filename = 'synapomorphies.pdf', 
+       device = 'pdf',
+       width = 225,
+       height = 168,
+       units = 'mm',
+       useDingbats=F)
+```
+
+We will now use mesquite to visualize character histories for each node.
+
+
+# palm association
+
+Let's read the table with palm associations.
+```{r}
+palms = readr::read_csv('palm_associations.csv')
+```
+
+Now let's use phytools to do ancestral state reconstruction under different models and choose model by the AIC.
+```{r}
+anc_only = ape::drop.tip(mb,c("Celetes_binotatus", "Celetes_langei", "Andranthobius_bondari", "Elaeidobius_kamerunicus", "Elaeidobius_subvittatus"))
+
+hosts = as.matrix(palms[-1])
+
+rownames(hosts) = palms$species
+hosts = hosts[anc_only$tip.label,]
+
+
+sim_foo = function(md){
+  pars = c('ER' = 1, 
+           'SYM' = (ncol(hosts)-1)*ncol(hosts)/2, 
+           'ARD' = (ncol(hosts)-1)*ncol(hosts)
+  )
+  a = phytools::make.simmap(tree = anc_only,
+                      x = hosts,
+                      model = md,
+                      nsim = 1)
+  return(data.frame(parameters = pars[md], 
+                    loglik = a$logL) %>%
+           mutate(AIC = 2*parameters-2*loglik))
+} 
+
+models = c('ARD','ER','SYM')
+names(models) = models
+
+models %>% 
+  purrr::map_df(~sim_foo(.x),.id='model') %>%
+  arrange(AIC)
+```
+
+An equal rates model seems to be best, so let's do 1000 stochatisc maps and plot the results.
+
+```{r}
+
+sim = phytools::make.simmap(tree = anc_only,
+                      x = hosts,
+                      model = 'ER',
+                      nsim = 1000)
+  
+ds_sim = describe.simmap(sim, plot = T)
+```
+
+Let's now plot pies using ggtree. First, let's get the pie data.
+```{r}
+node_pies = ds_sim$ace %>%
+  as.data.frame() %>%
+  rownames_to_column('node')
+
+tip_pies = hosts %>%
+  as.data.frame() %>%
+  rownames_to_column('species') %>%
+  mutate( species = species %>%
+            str_replace('Anchylorhynchus_','A.~') %>%
+            str_c('italic(',.,')') ) %>%
+  mutate(None = ifelse(str_detect(species,'parcus'),1,0))
+
+tip_pies[tip_pies$species == 'italic(A.~parcus)',c('Syagrus','Butia','Oenocarpus','Euterpe')] = 0
+
+node_pies = tip_pies %>%
+  mutate(node = which(mb_io@phylo$tip.label == species) %>% as.character()) %>%
+  select(-species) %>%
+  bind_rows(mutate(node_pies,None=0))
+```
+
+And now plot.
+```{r}
+cls = c(RColorBrewer::brewer.pal(n=4,name='Set1'),'#333333','#333333')
+names(cls) = c(names(node_pies)[1:5],'Unknown')
+
+pies = nodepie(node_pies, cols = 1:5)
+pies = lapply(pies, function(g) g + scale_fill_manual(values = cls))
+
+base_tr = anc_only
+base_tr$tip.label = stringr::str_replace(base_tr$tip.label,'^(.).+_','\\1.~') %>%
+  stringr::str_c('italic(',.,')')
+
+p = ggtree(as.treedata(base_tr),  size=0.25, ladderize = F) +
+    scale_fill_manual(values = cls, guide = guide_legend()) +
+  geom_tiplab(parse=T,
+              offset=0.02,
+              size=2.5) +
+  geom_inset(pies, 
+             width = .1, 
+             height = .1) +
+  xlim(0,1.1) +
+  theme_tree(legend.position = "right")
+
+lg = data.frame(Genus = c(names(cls)[1:4],'Unknown'),x = 1:5) %>%
+  ggplot(aes(fill = Genus,x=x,y=x)) +
+  geom_point(shape=21) +
+  scale_fill_manual(values = cls, guide=guide_legend(name = 'Host genus', 
+                                                     override.aes = list(size=3))) +
+  theme(legend.position = 'bottom',
+        legend.key = element_blank(),
+        legend.title = element_text(size=7),
+        legend.text = element_text(size=7,face='italic'))
+
+
+lg = cowplot::get_legend(lg)
+
+cowplot::plot_grid(p,
+                   lg,
+           ncol = 1, rel_heights = c(1, .08))
+ 
+ggsave(filename = 'hosts.pdf',
+       device = 'pdf',
+       width = 168,
+       height = 120,
+       units = 'mm',
+       useDingbats = F)
+```
+
+

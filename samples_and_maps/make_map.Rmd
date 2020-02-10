@@ -1,0 +1,168 @@
+---
+title: "Maps"
+output: html_notebook
+---
+In this notebook we will build maps for the species of Anchylorhynchus, using Natural Earth as base map and combining species with compatible distributions in a single map.
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(rnaturalearth)
+library(raster)
+library(RStoolbox)
+library(ggthemes)
+library(sf)
+library(gridExtra)
+```
+
+Let's read specimen data, keep only georreferrenced data and remove duplicates:
+
+```{r}
+sp_data = readxl::read_excel('especimes estudados_2020_rev1.xlsx')
+
+sp_data = sp_data %>%
+  filter(str_detect(updated_locality,'mistake',negate=T) | is.na(updated_locality)) %>%
+  dplyr::select(accepted_name,latitude, longitude) %>%
+  filter(!is.na(latitude)&!is.na(longitude)) %>%
+  distinct %>%
+  arrange(accepted_name, latitude, longitude) %>%
+  rename(species = accepted_name)
+
+sp_data
+```
+
+Now, let's download the base map (commented because only run once).
+
+```{r}
+#basemap = ne_download(scale = 'large', type = 'GRAY_HR_SR_OB_DR', category = 'raster', destdir = './map')
+```
+After map is downloaded, let's crop it to the region of interest:
+```{r}
+basemap = raster::stack('map/GRAY_HR_SR_OB_DR/GRAY_HR_SR_OB_DR.tif')
+bbox = raster::extent(c(xmin=-95,xmax=-25,ymin=-45,ymax=19))
+cropped = raster::crop(basemap,bbox)
+map_layer = ggRGB(cropped, ggLayer = TRUE,r = 1,g=1,b=1)
+#the following is just to visualize the layer
+print(ggRGB(cropped, r = 1,g=1,b=1))
+
+countries = ne_countries(scale=50, returnclass = 'sf') %>%
+  st_transform(crs = 4326) %>%
+  st_crop(c(xmin = bbox@xmin,
+            xmax = bbox@xmax,
+            ymin = bbox@ymin,
+            ymax = bbox@ymax))
+```
+
+Now, let's load a table indicating which species should be plotted together.
+
+```{r}
+sp_map = readr::read_csv('map_combination.csv')
+sp_map
+```
+
+
+Now, let's create a function that plots each map:
+
+```{r}
+plot_map = function(spp){
+  
+  this_occ = sp_data %>% 
+    filter(species %in% spp$species) %>%
+    mutate(species = str_c('A. ',species)) %>%
+    st_as_sf(coords=c('longitude', 'latitude'), crs=4326)
+    
+  
+  ggplot(this_occ) +
+    map_layer +
+    geom_sf(color='black',fill=NA, size=0.2, data=countries) +
+    geom_sf(aes(shape = species, fill = species), size = 1.5, show.legend = "point") +
+    coord_sf(expand = F, )+
+    scale_fill_brewer(type='qual') +
+    scale_shape_manual(values = 21:24) +
+    #guides(colour = guide_legend(override.aes = list(size=0.25))) +
+    theme(
+    axis.text = element_text(size=7), 
+    axis.ticks = element_line(),
+    #legend.text = element_text(face='italic',size=6,margin=margin(t=.1,r=0,b=.1,l=.1,unit='pt')),
+    legend.text = element_text(face='italic',size=6),
+    legend.margin = margin(t=0,r=2,b=2,l=2,unit='pt'),
+    legend.justification = c(1,1),
+    legend.position = c(1,1),
+    legend.title= element_blank(),
+    legend.box.margin = margin(t=0,r=0,b=0,l=0,unit='pt'),
+    legend.background = element_rect(fill = 'white',colour = NA),
+    legend.box.background = element_rect(fill = 'white',colour = NA),
+    legend.key = element_rect(fill = 'white',colour = NA),
+    legend.key.height = unit(8,'pt'),
+    legend.key.width = unit(5,'pt')
+    ) +
+    xlim(bbox@xmin,bbox@xmax) +
+    ylim(bbox@ymin,bbox@ymax) 
+}
+```
+
+
+Now let's plot all maps:
+```{r}
+plots = split(sp_map,sp_map$map) %>%
+  purrr::map(plot_map)
+
+plots = 1:length(plots) %>%
+  purrr::map(~plots[[.x]] + labs(tag=LETTERS[.x]))
+
+plots 
+```
+
+And now arrange them in a page:
+```{r}
+
+# plots[[1]] = plots[[1]] + theme(axis.ticks.x = element_line(color='white'),
+#                                 axis.text.x = element_text(color='white'))
+# 
+# for (i in 2:3){
+#   plots[[i]] = plots[[i]] + theme(axis.ticks = element_line(color='white'),
+#                                 axis.text = element_text(color='white'))
+# }
+# 
+# for (i in 5:6){
+#   plots[[i]] = plots[[i]] + theme(axis.ticks.y = element_line(color='white'),
+#                                 axis.text.y = element_text(color='white'))
+# }
+# 
+# p = grid.arrange(arrangeGrob(grobs=plots, 
+#                          nrow = 2))
+# 
+# ggsave('maps.pdf', plot=p, device='pdf',width=168,height = 140,units='mm',useDingbats=F)
+# 
+# plot(p)
+```
+
+```{r}
+
+# for (i in c(1,3)){
+#   plots[[i]] = plots[[i]] + theme(axis.ticks.x = element_line(color='white'),
+#                                 axis.text.x = element_text(color='white'))
+# }
+# 
+# for (i in c(2,4)){
+#   plots[[i]] = plots[[i]] + theme(axis.ticks = element_line(color='white'),
+#                                 axis.text = element_text(color='white'))
+# }
+# 
+# for (i in 6){
+#   plots[[i]] = plots[[i]] + theme(axis.ticks.y = element_line(color='white'),
+#                                 axis.text.y = element_text(color='white'))
+# }
+
+p = grid.arrange(arrangeGrob(grobs=plots, 
+                         nrow = 3))
+
+ggsave('maps_2.pdf', plot=p, device='pdf',width=168,height=200,units='mm',useDingbats=F)
+
+plot(p)
+```
+
+
+
+
+
