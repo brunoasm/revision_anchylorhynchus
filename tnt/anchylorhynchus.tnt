@@ -1,39 +1,38 @@
 nstates num 6;
 xread
-'File output by Morphobank v3.0 (http://www.morphobank.org); 2020-02-04 11.16.56'
-114 30
+113 30
 
 &[num]
-Anchylorhynchus_aegrotus                      [01]040010[02]1010102101020110112202211111100?300201101131[01][01]0[01]2010100[02]10[01]00102210012031121000101111010?00000311000101101
-Anchylorhynchus_albidus                       30420102001122010112000???????????0????????2??1030301100102??10000000002200011021021000202110010?00000111010111101
-Anchylorhynchus_amazonicus                    [12]0400100101[01]2200010200011[01]2221302111201211221210[23]0[23]01100002021101[01]0000[01]31100110210100[02][01]10211101100000011[012]01[01]1[01]1[01]01
-Anchylorhynchus_imitator_sp5_                 [12]0400100101[01]22000102000110222130211120121122120020[23]011000020211001000003210011[01][23]10122211021110110000001[01][01]010101101
-Anchylorhynchus_bicarinatus                   [23]0[12]00110111[01]220101020001011212201111110211222111111111002020210011000002200112221012221101111010?000101[12]20101[01]1101
-Anchylorhynchus_bicolor                       [012]040010[01]1010220101221000210202202001011240022100202011011020320001[01]01003210012131010021202010110?0000021100[01]101101
-Anchylorhynchus_bucki                         [012]04001001010[12]00101020110112202212111000221121100101111010020320201101002010011021000000102111010?00000122010111101
-Anchylorhynchus_burmeisteri                   [23]0400100[01]01[01]210101220001210202212101010230121111313011010120320111[01]01013310012031122231212110110?000001[01]201[01][01][01]1101
-Anchylorhynchus_multisquamis_sp1_             [12]04001001010220101020000??????????0????2???2??11313111000010320011001013300012131122221102011111200000111010111101
-Anchylorhynchus_camposi                       [12]04001001010220101020001111211302110101211121210[12]0[12]011000020211001000003200011021020021102111011000000112010111101
-Anchylorhynchus_rectus_sp2_                   [12]0400100101022000102110111222130211120121112121010[12]0110000213110010000032100110210211211021110110000001[12]1010111101
-Anchylorhynchus_minimus                       [012]040010010102201011211001112120?2111110230021110202011001020210010[01]?0013110011031021100201110110?0000011[12]01[01]1[01]1[01]01
-Anchylorhynchus_trapezicollis                 [012]0400100[01]01[01]220101020000111221302000201212121200303[01]11002021201010000[01]121100110210211102021100111000001[12]1010111101
-Anchylorhynchus_latipes_sp3_                  [12]0400100[01]010220001020000111221302111201212121200303111002021401010000012100011021020021102110011100000111010111101
-Anchylorhynchus_goiano_sp6_                   [12]0400100[01]010220101021000112221302001201212122200101[01]110020212110000000122100120210211102021100111000001[01][01]010111101
-Anchylorhynchus_tremolerasi                   [23]040010[23]101[02]22[012]1012210002102022121010102300220[01][01]2[01]2[01]110[01]1020210[02]10[012]0[01]0[01]3111012031120021212010110?00000212010101101
-Anchylorhynchus_chrysomeloides_sp4_           [23]0400100101022[12]1012210012102022010012102401210112[01]2[01]1101102032021010?013210012131120221202010110?000002110?010?101
-Anchylorhynchus_tricarinatus                  [012]02001201110220101040000010212212211111212221211313[01]11001020100011000002300112221111221202110110?000004110101[01]1101
-Anchylorhynchus_variabilis                    [23]0400100[01]01[02]10[12]101121110211202202010001222020100303111012020100010[012]11[01]11?00012?11121110223210110?000001[12]201[01]1[01]1[01]01
-Anchylorhynchus_vittipennis                   [23]0400100101[01]102101121010210202212110101221020100303[01]00011020100210[12]0?103210011031021110212111110?000001[12]1010111101
-Anchylorhynchus_pinnocchio_sp7_               314200001011220211020000111221212021001210121111112[01]1100001200100000000[23]300012021101100202111110?000001[012][12][01]10111101
-Anchylorhynchus_centrosquamatus_sp8_          [23]0400100101[01]22000112000001222130211120121112121030301100202031100000001321001212102000110111011100000011[12]010101101
-Anchylorhynchus_luteobrunneus_sp9_            [23]041011[02]101022[012]1010200001112212021011012210201111010110[01]0021101[01]11[01]0[01]01[23]200012121111100201110110?000001[12]10[01]0101101
-Anchylorhynchus_parcus                        1040?10[02]?010222101221000??????????01?????00???111??01?0?10202?10010?001321?001131020?3?????????0???????[12]1010111101
-Anchylorhynchus_vanini                        [23]04[01]0100001010210103[01]1001100?231211111022011111011311011202????[02]110001120000120210201402012??010?00000111010111101
-Elaeidobius_kamerunicus                       2030100000000?0000010000010301100021000100201020303122000000210001200?10?00000?0000110000100?000?10001?[01][12]1[12]1[01]00010
-Elaeidobius_subvittatus                       [01]03010000000000000010000100301110031100100210010101044000000210001000000?00000?0000110000000?000?00001?1[12]1[12]1001111
-Celetes_langei                                [123]03220002?0020000000000011041111011100023110100000003300?011100[02]01000010?00000?01110040001110000?0100001[12]1[02]1001111
-Celetes_binotatus                             [12]03020000010100100100000112511110021000231001100000022001221100001000001?00001?11121110001010000?000000021[12]10[01]0111
-Andranthobius_bondari                         [23]00-000002010?0000000000001100000010000001000010101044000001100000000000?00000?0000004200310??00?001?0?0211100001[01]
+Anchylorhynchus_aegrotus                      [01]040010[02]1010102101020110112202211111100?300201101111[01]002010100[02]10[01]00102210012031121000101111010-00000311000101101
+Anchylorhynchus_albidus                       30420102001122010112000???????????0????????2??103000100102??10000000002200011021021000202110010-00000111010111101
+Anchylorhynchus_amazonicus                    [12]0400100101[01]2200010200011[01]2221302111201211221210[23]000100002021101[01]0000[01]31100110210100[02][01]10211101100000011[012]01[01]1[01]1[01]01
+Anchylorhynchus_imitator                      [12]0400100101[01]22000102000110222130211120121122120020101000020211001000003210011[01][23]10122211021110110000001[01][01]010101101
+Anchylorhynchus_bicarinatus                   [23]0[12]00110111[01]22010102000101121220111111021122211110011002020210011000002200112221012221101111010-000101[12]20101[01]1101
+Anchylorhynchus_bicolor                       [012]040010[01]101022010122100021020220200101124002210020001001020320001[01]01003210012131010021202010110-0000021100[01]101101
+Anchylorhynchus_bucki                         [012]04001001010[12]0010102011011220221211100022112110010011000020320201101002010011021000000102111010-00000122010111101
+Anchylorhynchus_burmeisteri                   [23]0400100[01]01[01]21010122000121020221210101023012111130001000120320111[01]01013310012031122231212110110-000001[01]201[01][01][01]1101
+Anchylorhynchus_multisquamis                  [12]04001001010220101020000??????????0????2???2??1130011000010320011001013300012131122221102011111200000111010111101
+Anchylorhynchus_camposi                       [12]04001001010220101020001111211302110101211121210[12]0001000020211001000003200011021020021102111011000000112010111101
+Anchylorhynchus_rectus                        [12]04001001010220001021101112221302111201211121210101010000213110010000032100110210211211021110110000001[12]1010111101
+Anchylorhynchus_minimus                       [012]040010010102201011211001112120?211111023002111020001001020210010[01]?0013110011031021100201110110-0000011[12]01[01]1[01]1[01]01
+Anchylorhynchus_trapezicollis                 [012]0400100[01]01[01]220101020000111221302000201212121200300[01]1002021201010000[01]121100110210211102021100111000001[12]1010111101
+Anchylorhynchus_latipes                       [12]0400100[01]01022000102000011122130211120121212120030011002021401010000012100011021020021102110011100000111010111101
+Anchylorhynchus_goiano                        [12]0400100[01]010220101021000112221302001201212122200100[01]10020212110000000122100120210211102021100111000001[01][01]010111101
+Anchylorhynchus_tremolerasi                   [23]040010[23]101[02]22[012]1012210002102022121010102300220[01][01]200[01]1001020210[02]10[012]0[01]0[01]3111012031120021212010110-00000212010101101
+Anchylorhynchus_chrysomeloides                [23]0400100101022[12]101221001210202201001210240121011200[01]100102032021010?013210012131120221202010110-000002110?010?101
+Anchylorhynchus_tricarinatus                  [012]02001201110220101040000010212212211111212221211300[01]1001020100011000002300112221111221202110110-000004110101[01]1101
+Anchylorhynchus_variabilis                    [23]0400100[01]01[02]10[12]10112111021120220201000122202010030011002020100010[012]11[01]11?00012?11121110223111110-000001[12]201[01]1[01]1[01]01
+Anchylorhynchus_vittipennis                   [23]0400100101[01]102101121010210202212110101221020100300[01]0001020100210[12]0?103210011031021110212111110-000001[12]1010111101
+Anchylorhynchus_pinnocchio                    314200001011220211020000111221212021001210121111101[01]100001200100000000[23]300012021101100202111110-000001[012][12][01]10111101
+Anchylorhynchus_centrosquamatus               [23]0400100101[01]2200011200000122213021112012111212103000100202031100000001321001212102000110111011100000011[12]010101101
+Anchylorhynchus_luteobrunneus                 [23]041011[02]101022[012]10102000011122120210110122102011112001000021101[01]11[01]0[01]01[23]200012121111100201110110-000001[12]10[01]0101101
+Anchylorhynchus_parcus                        1040?10[02]?010222101221000??????????01?????00???111??01??10202?10010?001321?011131020?3?????????0-??????[12]1010111101
+Anchylorhynchus_vanini                        [23]04[01]0100001010210103[01]1001100?23121111102201111101111111202????[02]110001120000120210201402012??010-00000111010111101
+Elaeidobius_kamerunicus                       2030100000000?000001000001030110002100010020102030012000000210001200?10?00000?0000110000100?000-10001?[01][12]1[12]1[01]00010
+Elaeidobius_subvittatus                       [01]0301000000000000001000010030111003110010021001010004000000210001000000?00000?0000110000000?000-00001?1[12]1[12]1001111
+Celetes_langei                                [123]03220002?002000000000001104111101110002311010000000300?011100[02]01000010?00000?01110040001110000-0100001[12]1[02]1001111
+Celetes_binotatus                             [12]0302000001010010010000011251111002100023100110000002001221100001000001?00001?11121110001010000-000000021[12]10[01]0111
+Andranthobius_bondari                         [23]00-000002010?000000000000110000001000000100001010004000001100000000000?00000?0000004200310??00-001?0?0211100001[01]
 ;
 
 
@@ -42,7 +41,7 @@ cnames
 { 1 Rostrum_length_sexual_dimorphism Males_and_females_about_the_same_size Male_rostrum_much_longer_than_female_s;
 { 2 Male_rostrum_longitudinal_carinae_number none two three five seven;
 { 3 Male_rostrum_longitudinal_carinae_whether_distinct all_carinae_distinct_from_base_to_apex two_lateralmost_carinae_indistinct_near_base all_carinae_indistinct;
-{ 4 Female_rostrum_longitudinal_carinae no_dimorphism female_with_no_carina_at_base female_with_no_carina_throughout;
+{ 4 Rostrum_longitudinal_carinae_sexual_dimorphism no_dimorphism female_with_no_carina_at_base female_with_no_carina_throughout;
 { 5 Rostrum_scrobe_angle parallel_to_rostrum directed_obliquely_downwards;
 { 6 Male_rostrum_apex_vestiture_shape_of_scales microsetae thin_elongated_scales wide_scales;
 { 7 Male_rostrum_dorsal_scales_color yellowish orange reddish_brown black;
@@ -56,7 +55,7 @@ cnames
 { 15 Male_antennae_scape_length not_reaching_the_eye_margin reaching_the_eye_margin extending_beyond_the_eye_margin;
 { 16 Male_antennae_scape_curvature straight curved;
 { 17 Antennae_funicle_number_of_antennomeres 7 6;
-{ 18 Left_mandible_external_margin_shape straight slightly_sinuate strongly_sinuate;
+{ 18 Left_mandible_external_margin_shape not_sinuate slightly_sinuate strongly_sinuate;
 { 19 Left_mandible_dorsal_region_setae_number_and_shape one_very_short_seta none one_long_seta one_long_and_one_short_seta three_setae;
 { 20 Left_mandible_external_tooth_orientation_in_relation_to_external_margin evenly_curved_with_the_lateral_margin sharply_angled_in_relation_to_the_lateral_margin;
 { 21 Left_mandible_external_tooth_shape pointed rounded_to_truncated;
@@ -85,78 +84,77 @@ cnames
 { 44 Labium_palpomere_II_length_in_relation_to_palpomere_III shorter_than_palpomere_III about_as_long_as_palpomere_I longer_than_palpomere_I;
 { 45 Labium_palpomere_III_lateral_setae_number absent one two;
 { 46 Pronotum_proximal_margin_shape not_lobed_in_the_middle slightly_lobed_in_the_middle strongly_lobed_in_the_middle;
-{ 47 Male_pronotum_lateral_margins_curvature evenly_curved with_and_inflexion_in_median_region;
+{ 47 Male_pronotum_lateral_margins_curvature evenly_curved with_an_inflexion_in_median_region;
 { 48 Male_pronotum_lateral_margins_direction_at_base diverging parallel subparallel converging;
-{ 49 Female_pronotum_lateral_margins_curvature evenly_curved with_and_inflexion_in_median_region;
-{ 50 Female_pronotum_lateral_margins_direction_at_base diverging parallel subparallel converging;
+{ 49 Pronotum_lateral_margins_curvature_sexual_dimorphism No_dimorphism Males_evenly_curved_and_females_with_an_inflection_in_the_median_region Males_with_an_inflection_in_the_median_region_and_females_evenly_curved;
+{ 50 Pronotum_lateral_margins_direction_at_base_sexual_dimorphism No_dimorphism Females_with_margins_more_convergent_than_males;
 { 51 Male_pronotum_apical_constriction with_a_slight_constriction without_constriction;
 { 52 Male_pronotum_setae_shape with_scales_on_the_sides_and_microsetae_on_the_disc scales long_setae short_setae_and_thin_scales short_setae;
-{ 53 Female_pronotum_setae_shape with_scales_on_the_side_and_microsetae_in_the_disc scales long_setae short_setae_and_thin_scales short_setae;
-{ 54 Pronotum_setae_color_whether_sexually_dimorphic not_sexually_dimorphic sexually_dimorphic_with_males_always_yellow;
-{ 55 Female_pronotum_setae_color uniformly_yellow_to_orange bicolor;
-{ 56 Pronotum_setae_along_the_longitudinal_midline directed_towards_the_base directed_towards_the_apex directed_towards_the_center;
-{ 57 Male_profemora_lateral_view_shape about_equally_curved_in_dorsal_and_ventral_margins distinctily_more_straight_on_dorsal_margin distinctly_more_straight_on_ventral_margin;
-{ 58 Male_profemora_ventral_tooth_degree_of_development absent poorly_developed well_developed;
-{ 59 Male_protarsi_tarsomere_I_length_in_relation_to_tarsomere_III approximatelly_as_long_as_tarsomere_III stlightly_longer_than_tarsomere_III more_than_3_times_longer_than_tarsomere_III;
-{ 60 Male._protarsi_tarsomeres_I_and_II_shape distinctly_longer_than_wide slightly_longer_than_wide as_long_as_wide slightly_wider_than_long distinctly_wider_than_long;
-{ 61 Female_protarsi_tarsomeres_I_and_II_shape longer_than_wide as_long_as_wide slightly_wider_than_long;
-{ 62 Male_protarsi_ventral_setae_length_and_arrangement without_long_hairs with_long_hairs;
-{ 63 Scutellum_vestiture_color uniformly_yellow_to_orange bicolor uniformly_dark;
-{ 64 Elytra_humeri_dorsal_view_shape with_a_marked_angle rounded;
-{ 65 Elytra_lateral_margins_shape wider_in_the_middle subparallel;
-{ 66 Elytra_dorsal_region_vestiture_color uniformly_yellow_to_orange bicolor uniformly_dark;
-{ 67 Elytra_dorsal_region_vestiture_whether_sexually_dimorphic not_sexually_dimorphic sexually_dimorphic_with_males_always_yellow;
-{ 68 Elytra_epipleura_vestiture_color similar_to_the_disc with_a_stripe_of_dark_scales;
-{ 69 Elytra_epipleura_degree_of_inflexion with_a_smooth_inflexion with_a_sharp_inflexion;
-{ 70 Ventral_region_vestiture_color_in_relation_to_dorsal_region similar distinctly_lighter_colored;
-{ 71 Hypomeron_vestiture_shape_of_scales microsetae setiform acuminate truncated;
-{ 72 Hypomeron_region_further_from_coxal_cavities_vestiture_shape_and_size_in_of_scales_in_relation_to_those_in_pronotum distinctly_more_elongated slightly_more_elongated similar wider;
-{ 73 Male_hypomeron_region_next_to_coxal_cavities_vestiture_shape_and_size_of_scales similar wider;
-{ 74 Female_hypomeron_region_next_to_coxal_cavities_vestiture similar_to_males more_elongated_than_in_males;
-{ 75 Prosternum_postocular_lobes absent present;
-{ 76 Prosternum_elongated_apical_setae absent present;
-{ 77 Prosternum_vestiture_density very_sparse non_overlapping_to_slightly_overlapping widely_overlapping;
-{ 78 Prosternum_vestiture_shape_and_size_of_scales_in_relation_to_those_in_pronotum more_elongated similar wider;
-{ 79 Prosternum_scales_apex_shape microsetae setiform acuminate truncated;
-{ 80 Prosternum_distance_between_coxal_cavities separate contiguous;
-{ 81 Metepisternum_vestiture_density non_overlapping overlapping;
-{ 82 Male_metasternum_concavity_sharpness_of_edges indistinct with_smooth_edges with_sharp_edges;
-{ 83 Male_metasternum_concavity_vestiture_shape_of_setae microsetae long_setae scales;
-{ 84 Female_metasternum_vestiture_shape_of_setae microsetae long_setae scales;
-{ 85 Male_ventrites_III_V_vestiture_arrangement_and_shape_of_setae recumbent_setae erect_setae elongated_scales elongated_scales_and_recumbent_setae microsetae;
-{ 86 Female_ventrites_III_V_vesitutre_arrangement_and_shape_of_setae recumbent_setae elongated_scales microsetae;
-{ 87 Female_ventrites_III_IV_degree_of_retraction not_retracted slightly_retracted strongly_retracted;
-{ 88 Female_ventrites_III_IV_shape_of_posterior_margin non_sinuate slightly_sinuate strongly_sinuate;
-{ 89 Male_genitalia_aedeagus_aperture_shape narrower_than_the_anterior_region as_wide_as_the_anterior_region slightly_wider_than_the_anterior_region strongly_wider_than_the_anterior_region;
-{ 90 Male_genitalia_aedeagus_shape_of_apex not_constricted constricted_and_acute round_or_truncated constricted_and_bilobed;
-{ 91 Male_genitalia_aedeagus_ventral_plate_whether_extending_beyond_the_insertion_of_apodemes absent present;
-{ 92 Male_genitalia_aedeagus_ventral_plate_degree_of_sclerotization well_sclerotized poorly_sclerotized;
-{ 93 Male_genitalia_endophallus_lateral_pockets_with_microsetae absent present;
-{ 94 Male_genitalia_endophallus_proximal_complex_sclerite absent present;
-{ 95 Male_genitalia_endophallus_paired_distal_sclerites absent present;
-{ 96 Male_genitalia_endophallus_paired_distal_sclerites_shape L_shaped rounded elongated;
-{ 97 Male_genitalia_endophallus_hook_shaped_sclerite absent present;
-{ 98 Male_genitalia_endophallus_round_shaped_distal_sclerite absent present;
-{ 99 Male_genitalia_endophallus_distal_sclerite_shaped_a_double_hook absent present;
-{ 100 Male_genitalia_endophallus_distal_slightly_sclerotized_area absent present;
-{ 101 Male_genitalia_endophallus_microsetae present absent;
-{ 102 Male_genitalia_endophallus_microsetae_arrangement all_within_the_aedeagus not_organized_in_stripes organized_in_a_pair_of_longitudinal_stripes_in_the_apical_region organized_in_a_pair_of_longitudinal_stripes_in_the_median_region organized_in_one_longitudinal_stripe_in_the_apical_region;
-{ 103 body_size_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width_ body_size_measurement_is_about_1.04 body_size_measurement_is_about_1.862 body_size_measurement_is_about_2.753;
-{ 104 male_eyes_above_in_relation_to_head_width eyes_above_measurement_is_about_0.182_times_head_width eyes_above_measurement_is_about_0.2543_times_head_width eyes_above_measurement_is_about_0.3246_times_head_width;
-{ 105 male_rotrum_width_base_in_relation_to_rostrum_width_apex rotrum_width_base_measurement_is_about_0.7558_times_rostrum_width_apex rotrum_width_base_measurement_is_about_0.972_times_rostrum_width_apex;
-{ 106 female_rostrum_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width rostrum_length_measurement_is_about_0.6106_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width rostrum_length_measurement_is_about_0.9132_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width rostrum_length_measurement_is_about_1.504_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
-{ 107 male_pronotum_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width pronotum_length_measurement_is_about_0.6069_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width pronotum_length_measurement_is_about_0.7969_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
-{ 108 male_scutellum_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width scutellum_length_measurement_is_about_0.05338_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width scutellum_length_measurement_is_about_0.09851_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
-{ 109 male_scutellum_width_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width scutellum_width_measurement_is_about_0.07951_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width scutellum_width_measurement_is_about_0.1221_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
-{ 110 male_eye_height_in_relation_to_head_width eye_height_measurement_is_about_0.4518_times_head_width eye_height_measurement_is_about_0.61_times_head_width;
-{ 111 male_elytra_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width elytra_length_measurement_is_about_1.856_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width elytra_length_measurement_is_about_2.218_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
-{ 112 male_prosternum_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width prosternum_length_measurement_is_about_0.2916_times_the_geometric_mean_of_pronotum_length_pronotum_width prosternum_length_measurement_is_about_0.5487_times_the_geometric_mean_of_pronotum_length_pronotum_width;
-{ 113 male_coxae_width_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width coxae_width_measurement_is_about_0.1864_times_the_geometric_mean_of_pronotum_length_pronotum_width coxae_width_measurement_is_about_0.2962_times_the_geometric_mean_of_pronotum_length_pronotum_width;
+{ 53 Pronotum_setae_shape_sexual_dimorphism Not_sexually_dimorphic Males_with_scales_and_females_with_microsetae_on_the_disk;
+{ 54 Pronotum_setae_color_sexual_dimorphism not_sexually_dimorphic sexually_dimorphic_with_males_always_yellow;
+{ 55 Pronotum_setae_along_the_longitudinal_midline directed_towards_the_base directed_towards_the_apex directed_towards_the_center;
+{ 56 Male_profemora_lateral_view_shape about_equally_curved_in_dorsal_and_ventral_margins distinctily_more_straight_on_dorsal_margin distinctly_more_straight_on_ventral_margin;
+{ 57 Male_profemora_ventral_tooth_degree_of_development absent poorly_developed well_developed;
+{ 58 Male_protarsi_tarsomere_I_length_in_relation_to_tarsomere_III approximately_as_long_as_tarsomere_III slightly_longer_than_tarsomere_III more_than_3_times_longer_than_tarsomere_III;
+{ 59 Male._protarsi_tarsomeres_I_and_II_shape distinctly_longer_than_wide slightly_longer_than_wide as_long_as_wide slightly_wider_than_long distinctly_wider_than_long;
+{ 60 Female_protarsi_tarsomeres_I_and_II_shape longer_than_wide as_long_as_wide slightly_wider_than_long;
+{ 61 Male_protarsi_ventral_setae_length_and_arrangement without_long_hairs with_long_hairs;
+{ 62 Scutellum_vestiture_color uniformly_yellow_to_orange bicolor uniformly_dark;
+{ 63 Elytra_humeri_dorsal_view_shape with_a_marked_angle rounded;
+{ 64 Elytra_lateral_margins_shape wider_in_the_middle subparallel;
+{ 65 Elytra_dorsal_region_vestiture_color uniformly_yellow_to_orange bicolor uniformly_dark;
+{ 66 Elytra_dorsal_region_vestiture_whether_sexually_dimorphic not_sexually_dimorphic sexually_dimorphic_with_males_always_yellow;
+{ 67 Elytra_epipleura_vestiture_color similar_to_the_disc with_a_stripe_of_dark_scales;
+{ 68 Elytra_epipleura_degree_of_inflexion with_a_smooth_inflexion with_a_sharp_inflexion;
+{ 69 Ventral_region_vestiture_color_in_relation_to_dorsal_region similar distinctly_lighter_colored;
+{ 70 Hypomeron_vestiture_shape_of_scales microsetae setiform acuminate truncated;
+{ 71 Hypomeron_region_further_from_coxal_cavities_vestiture_shape_and_size_in_of_scales_in_relation_to_those_in_pronotum distinctly_more_elongated slightly_more_elongated similar wider;
+{ 72 Male_hypomeron_region_next_to_coxal_cavities_vestiture_shape_and_size_of_scales similar wider;
+{ 73 Hypomeron_region_next_to_coxal_cavities_vestiture_sexual_dimorphism not_sexually_dimorphic scales_more_elongated_in_females_than_in_males;
+{ 74 Prosternum_postocular_lobes absent present;
+{ 75 Prosternum_elongated_apical_setae absent present;
+{ 76 Prosternum_vestiture_density very_sparse non_overlapping_to_slightly_overlapping widely_overlapping;
+{ 77 Prosternum_vestiture_shape_and_size_of_scales_in_relation_to_those_in_pronotum more_elongated similar wider;
+{ 78 Prosternum_scales_apex_shape microsetae setiform acuminate truncated;
+{ 79 Prosternum_distance_between_coxal_cavities separate contiguous;
+{ 80 Metepisternum_vestiture_density non_overlapping overlapping;
+{ 81 Male_metasternum_concavity_sharpness_of_edges indistinct with_smooth_edges with_sharp_edges;
+{ 82 Male_metasternum_concavity_vestiture_shape_of_setae microsetae long_setae scales;
+{ 83 Female_metasternum_vestiture_shape_of_setae microsetae long_setae scales;
+{ 84 Male_ventrites_III_V_vestiture_arrangement_and_shape_of_setae recumbent_hairs erect_hairs elongated_scales elongated_scales_and_recumbent_hairs microsetae;
+{ 85 Female_ventrites_III_V_vesitutre_arrangement_and_shape_of_setae recumbent_setae elongated_scales microsetae;
+{ 86 Female_ventrites_III_IV_degree_of_retraction not_retracted slightly_retracted strongly_retracted;
+{ 87 Female_ventrites_III_IV_shape_of_posterior_margin non_sinuate slightly_sinuate strongly_sinuate;
+{ 88 Male_genitalia_aedeagus_aperture_shape narrower_than_the_anterior_region as_wide_as_the_anterior_region slightly_wider_than_the_anterior_region strongly_wider_than_the_anterior_region;
+{ 89 Male_genitalia_aedeagus_shape_of_apex not_constricted constricted_and_acute_round_or_truncated constricted_and_bilobed constricted_and_bilobed;
+{ 90 Male_genitalia_aedeagus_ventral_sclerotization_length not_extending_beyond_the_insertion_of_apodemes extending_beyond_the_insertion_of_apodemes;
+{ 91 Male_genitalia_aedeagus_ventral_plate_degree_of_sclerotization well_sclerotized poorly_sclerotized;
+{ 92 Male_genitalia_endophallus_lateral_pockets_with_microtrichiae absent present;
+{ 93 Male_genitalia_endophallus_proximal_complex_sclerite absent present;
+{ 94 Male_genitalia_endophallus_paired_distal_sclerites absent present;
+{ 95 Male_genitalia_endophallus_paired_distal_sclerites_shape L_shaped rounded elongated;
+{ 96 Male_genitalia_endophallus_hook_shaped_sclerite absent present;
+{ 97 Male_genitalia_endophallus_round_shaped_distal_sclerite absent present;
+{ 98 Male_genitalia_endophallus_distal_sclerite_shaped_a_double_hook absent present;
+{ 99 Male_genitalia_endophallus_distal_slightly_sclerotized_area absent present;
+{ 100 Male_genitalia_endophallus_microtrichiae present absent;
+{ 101 Male_genitalia_endophallus_microtrichiae_arrangement all_within_the_aedeagus not_organized_in_stripes organized_in_a_pair_of_longitudinal_bands_in_the_apical_region organized_in_a_pair_of_longitudinal_bands_in_the_median_region organized_in_one_transversal_band_in_the_apical_region;
+{ 102 body_size_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width_ body_size_measurement_is_about_1.04 body_size_measurement_is_about_1.862 body_size_measurement_is_about_2.753;
+{ 103 male_eyes_above_in_relation_to_head_width eyes_above_measurement_is_about_0.182_times_head_width eyes_above_measurement_is_about_0.2543_times_head_width eyes_above_measurement_is_about_0.3246_times_head_width;
+{ 104 male_rotrum_width_base_in_relation_to_rostrum_width_apex rotrum_width_base_measurement_is_about_0.7558_times_rostrum_width_apex rotrum_width_base_measurement_is_about_0.972_times_rostrum_width_apex;
+{ 105 female_rostrum_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width rostrum_length_measurement_is_about_0.6106_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width rostrum_length_measurement_is_about_0.9132_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width rostrum_length_measurement_is_about_1.504_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
+{ 106 male_pronotum_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width pronotum_length_measurement_is_about_0.6069_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width pronotum_length_measurement_is_about_0.7969_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
+{ 107 male_scutellum_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width scutellum_length_measurement_is_about_0.05338_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width scutellum_length_measurement_is_about_0.09851_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
+{ 108 male_scutellum_width_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width scutellum_width_measurement_is_about_0.07951_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width scutellum_width_measurement_is_about_0.1221_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
+{ 109 male_eye_height_in_relation_to_head_width eye_height_measurement_is_about_0.4518_times_head_width eye_height_measurement_is_about_0.61_times_head_width;
+{ 110 male_elytra_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width elytra_length_measurement_is_about_1.856_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width elytra_length_measurement_is_about_2.218_times_the_geometric_mean_of_pronotum_length_pronotum_width_elytra_length_elytrum_width;
+{ 111 male_prosternum_length_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width prosternum_length_measurement_is_about_0.2916_times_the_geometric_mean_of_pronotum_length_pronotum_width prosternum_length_measurement_is_about_0.5487_times_the_geometric_mean_of_pronotum_length_pronotum_width;
+{ 112 male_coxae_width_in_relation_to_the_geometric_mean_of_pronotum_length_pronotum_width coxae_width_measurement_is_about_0.1864_times_the_geometric_mean_of_pronotum_length_pronotum_width coxae_width_measurement_is_about_0.2962_times_the_geometric_mean_of_pronotum_length_pronotum_width;
 
 ;
 
 
-ccode  - 0.1 3.23 25 27 29.31 35.39 43 45.58 62.102 + 2 24 26 28 32.34 40.42 44 59.61 103.113;
+ccode  - 0.1 3.23 25 27 29.31 35.39 43 45.57 61.101 + 2 24 26 28 32.34 40.42 44 58.60;
 
 
 ;

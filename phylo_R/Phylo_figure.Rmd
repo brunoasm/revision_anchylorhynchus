@@ -11,6 +11,7 @@ Let's first load packages.
 library(phytools)
 library(tidyverse)
 library(cowplot)
+library(corHMM)
 ```
 
 # Plot trees
@@ -68,7 +69,7 @@ tnt_io@phylo$tip.label = stringr::str_replace(tnt_io@phylo$tip.label,'^(.).+_','
   stringr::str_c('italic(',.,')')
 ```
 
-For some reason, posterior probability is a factor, let's change it to continuous. Let's also remove posterior probabilities from tips
+For some reason, posterior probability in the Bayesian tree is a factor, let's change it to continuous. Let's also remove posterior probabilities from tips.
 ```{r}
 mb_io@data = mb_io@data %>%
   mutate(prob_percent = 100*as.numeric(posterior),
@@ -78,6 +79,17 @@ mb_io@data = mb_io@data %>%
                             prob_percent))
 
 ```
+
+
+TNT saved both bootstrap frequencies and "frequency differences"(GC), let's keep only frequencies and change to numeric.
+```{r}
+tnt_io@data = tnt_io@data %>%
+  mutate(bootstrap = str_split(bootstrap,'/',simplify = F) %>%
+           purrr::map(1) %>%
+           as.numeric())
+
+```
+
 
 Now let's plot each tree separately
 
@@ -100,7 +112,7 @@ t1 = ggtree(mb_io, aes(color=prob_pct2), size= 0.25, ladderize = F) +
 
 t1
 
-t2 = ggtree(tnt_io, aes(color=boot), size=0.25, ladderize = F) +
+t2 = ggtree(tnt_io, aes(color=bootstrap), size=0.25, ladderize = F) +
   scale_x_reverse() +
   xlim(c(19,0)) +
   geom_tiplab(parse=T,
@@ -146,7 +158,7 @@ chars = scan('anchylorhynchus_chars.txt',what = character(),sep = '\n') %>%
          ) %>%
   select(species=V1, chars) %>%
   tidyr::unnest(chars) %>%
-  mutate(character=rep(1:114,30)) %>%
+  mutate(character=rep(1:113,30)) %>%
   mutate(chars = na_if(chars,'?'),
          chars = na_if(chars,'-'),
          chars = str_split(chars,',')) %>%
@@ -213,201 +225,111 @@ chars %>%
   nrow
 ```
 
-We will now plot the synapomorphies for each not as inferred by TNT. First, we generated a table based on TNT output (command `apo- ;`) relating each state change to a node. Unfortunately, I do not know how to make TNT output a tree with node numbers, so I had to manually associate each no to its constituent species. This was easier to do by also using `apo [ 0.'i' ;`, which plotted the same synapomorphies on an ascii tree. Let's read the table. We will only plot synapomorphies for **Anchylorhynchus** and the clades within.
+To figure out which traits are autapomorphies, we will use Mesquite, since TNT output is very hard to parse.
 
-```{r}
-syn = read_csv('tnt_synapomorphies.csv')
-syn
-```
-
-Let's now, for each node, create a text condensing all character changes. For all tips except A. camposi, we will keep everything in one line. For the others, we will join 5 transtions per line.
-```{r}
-syn = syn %>%
-  group_by(tips) %>%
-  mutate(group = rep(1:10,each=5)[1:n()]) %>%
-  group_by(tips,group) %>%
-  summarize(text = str_c(character,':',start,'>',end,collapse='; ')) %>%
-  group_by(tips) %>%
-  summarize(text = str_c(text,collapse='\n')) %>%
-  ungroup %>%
-  mutate(text = ifelse(str_detect(tips,',')  | 
-                         str_detect(tips,'camposi'),
-                          text,
-                          str_replace(text,'\n',';'))
-          )
-```
-
-
-Now let's associate species with nodes in the parsimony tree.
-```{r}
-find_node = function(x){
-  tips = str_split(x,pattern=',',simplify = T) %>%
-    str_replace('Anchylorhynchus_','A.~') %>%
-    str_c('italic(',.,')')
-  
-  node = ape::getMRCA(tnt_io@phylo,tips)
-  
-  if (is.null(node)){
-    return(which(tnt_io@phylo$tip.label == tips))
-  } else{
-    return(node)
-  }
-}
-
-syn = syn %>%
-  rowwise() %>%
-  mutate(node = find_node(tips)) %>%
-  mutate(node = as.character(node)) %>%
-  select(node,text)
-
-syn
-```
-
-Let's now add text as a column in the ggtree data object.
-
-```{r}
-tnt_w_chars = tnt_io
-
-tnt_w_chars@data = tnt_w_chars@data %>%
-  right_join(syn)
-
-tnt_w_chars@phylo$edge.length = tnt_w_chars@phylo$edge %>%
-  as_tibble() %>%
-  select(V2) %>%
-  rename(node=V2) %>%
-  mutate(node = as.character(node)) %>%
-  left_join(syn) %>%
-  mutate(s_length = str_length(text) + 5) %>%
-  select(node,s_length) %>%
-  mutate(s_length = ifelse(is.na(s_length),5,s_length)) %>%
-  pull(s_length)
-
-
-heights = phytools::nodeHeights(tnt_w_chars@phylo)
-diff_h = max(heights[,2]) - heights[,2]
-
-for (i in 1:Ntip(tnt_w_chars@phylo)) {
-  row = which(tnt_w_chars@phylo$edge[,2] == i)
-  tnt_w_chars@phylo$edge.length[row] = tnt_w_chars@phylo$edge.length[row] + diff_h[row]
-}
-
-
-  
-```
-
-Let's now plot all transitions:
-```{r}
-last_node = ape::getMRCA(phy = tnt_w_chars@phylo,c('italic(A.~bicolor)','italic(A.~albidus)'))
-
-p = ggtree(tnt_w_chars, size=0.25, ladderize = F) +
-  xlim(c(110,620)) +
-  geom_tiplab(parse=T,
-              hjust = 0,
-              offset=-0.15,
-              size=2.5) +
-  ylim(0,25) +
-  scale_color_viridis_c(na.value = 'black', limits= c(0,100),expand=c(0,0),name='Support') +
-  theme_tree()
-
-xy_anc = p$data %>%
-  filter(node == last_node) %>%
-  select(x,y) %>%
-  mutate(xend = 110, yend = y)
-
-p +
-  geom_segment(data=xy_anc, aes(x=x, y=y,xend=xend,yend=yend),size=0.25) +
-  geom_label(aes(label=text), fill='lightgreen',size=1.5,hjust=1,nudge_x = -1) +
-
-ggsave(filename = 'synapomorphies.pdf', 
-       device = 'pdf',
-       width = 225,
-       height = 168,
-       units = 'mm',
-       useDingbats=F)
-```
-
-We will now use mesquite to visualize character histories for each node.
-
-
-# palm association
+# Palm association
 
 Let's read the table with palm associations.
 ```{r}
 palms = readr::read_csv('palm_associations.csv')
+palms
 ```
 
-Now let's use phytools to do ancestral state reconstruction under different models and choose model by the AIC.
+Now let's use the function `rayDisc` in package `corHMM` to do ancestral state reconstruction under different models and choose model by the AIC. We use this function because it can handle polymorphisms and missing data. We will also remove the outgroup since it is not particularly well sampled.
+
+Let's start by formatting the tree and character as required by rayDisc.
+
 ```{r}
 anc_only = ape::drop.tip(mb,c("Celetes_binotatus", "Celetes_langei", "Andranthobius_bondari", "Elaeidobius_kamerunicus", "Elaeidobius_subvittatus"))
 
-hosts = as.matrix(palms[-1])
+hosts = palms %>%
+  gather(-species, key=palm,value=association) %>%
+  mutate(palm = as.factor(palm))
 
-rownames(hosts) = palms$species
-hosts = hosts[anc_only$tip.label,]
+palm_trans = levels(hosts$palm)
 
+hosts = hosts %>%
+  mutate(palm = as.integer(palm)) %>%
+  filter(association==1) %>%
+  group_by(species) %>%
+  summarise(palm=ifelse(n() == 4,'?', str_c(unique(palm),collapse='&'))) 
+
+hosts
+
+```
+
+
+Now let's run the reconstruction using 3 different models (equal rates, symmetric and asymmetric).
+
+```{r}
 
 sim_foo = function(md){
-  pars = c('ER' = 1, 
-           'SYM' = (ncol(hosts)-1)*ncol(hosts)/2, 
-           'ARD' = (ncol(hosts)-1)*ncol(hosts)
-  )
-  a = phytools::make.simmap(tree = anc_only,
-                      x = hosts,
-                      model = md,
-                      nsim = 1)
-  return(data.frame(parameters = pars[md], 
-                    loglik = a$logL) %>%
-           mutate(AIC = 2*parameters-2*loglik))
+
+  a = rayDISC(anc_only,
+              model = md,
+            data = as.data.frame(hosts),
+            node.states='marginal',
+            root.p = 'maddfitz')
+  
+  return(a)
 } 
 
 models = c('ARD','ER','SYM')
 names(models) = models
 
-models %>% 
-  purrr::map_df(~sim_foo(.x),.id='model') %>%
-  arrange(AIC)
+results = models %>% 
+  purrr::map(~sim_foo(.x))
 ```
 
-An equal rates model seems to be best, so let's do 1000 stochatisc maps and plot the results.
+Let's compare the 3 models now.
 
 ```{r}
-
-sim = phytools::make.simmap(tree = anc_only,
-                      x = hosts,
-                      model = 'ER',
-                      nsim = 1000)
-  
-ds_sim = describe.simmap(sim, plot = T)
+purrr::map_df(results,
+              ~tibble(loglik = .x$loglik,
+                      AIC = .x$AIC,
+                      AICc = .x$AICc),
+              .id = 'model') %>%
+  arrange(AIC) %>%
+  mutate(AICw = exp(-0.5*(AICc-min(AICc))) / sum(exp(-0.5*(AICc-min(AICc)))) )
 ```
+
+
+An equal rates model seems to be best, let's plot the marginal reconstructions onto the tree now.
+
 
 Let's now plot pies using ggtree. First, let's get the pie data.
 ```{r}
-node_pies = ds_sim$ace %>%
+node_pies = results$ER$states %>%
   as.data.frame() %>%
-  rownames_to_column('node')
+  rownames_to_column('node') %>%
+  mutate(node = as.numeric(node) + Ntip(anc_only)) 
 
-tip_pies = hosts %>%
-  as.data.frame() %>%
-  rownames_to_column('species') %>%
-  mutate( species = species %>%
-            str_replace('Anchylorhynchus_','A.~') %>%
-            str_c('italic(',.,')') ) %>%
+names(node_pies) = c('node',palm_trans)
+
+tip_pies = palms %>%
+  mutate(node = match(species, anc_only$tip.label)) %>%
+#  mutate( species = species %>%
+#            str_replace('Anchylorhynchus_','A.~') %>%
+#            str_c('italic(',.,')') ) %>%
   mutate(None = ifelse(str_detect(species,'parcus'),1,0))
 
-tip_pies[tip_pies$species == 'italic(A.~parcus)',c('Syagrus','Butia','Oenocarpus','Euterpe')] = 0
+tip_pies[tip_pies$species == 'Anchylorhynchus_parcus',
+         c('Syagrus','Butia','Oenocarpus','Euterpe')] = 0
 
-node_pies = tip_pies %>%
-  mutate(node = which(mb_io@phylo$tip.label == species) %>% as.character()) %>%
-  select(-species) %>%
-  bind_rows(mutate(node_pies,None=0))
+
+node_pies = bind_rows(mutate(node_pies,None=0),
+                      select(tip_pies,-species)) %>%
+  rename(Unknown=None)
+
+node_pies
 ```
 
 And now plot.
 ```{r}
-cls = c(RColorBrewer::brewer.pal(n=4,name='Set1'),'#333333','#333333')
-names(cls) = c(names(node_pies)[1:5],'Unknown')
+cls = c(RColorBrewer::brewer.pal(n=4,name='Set1'),'#333333')
+names(cls) = c(names(node_pies)[2:6])
 
-pies = nodepie(node_pies, cols = 1:5)
+pies = nodepie(node_pies, cols = 2:6)
 pies = lapply(pies, function(g) g + scale_fill_manual(values = cls))
 
 base_tr = anc_only
@@ -448,6 +370,7 @@ ggsave(filename = 'hosts.pdf',
        height = 120,
        units = 'mm',
        useDingbats = F)
+
 ```
 
 
