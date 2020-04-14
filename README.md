@@ -4,7 +4,7 @@ This folder includes supplementary scripts and data files used for the revision 
 
 ## continuous_traits
 
-Input files used to produced disretized characters in [https://github.com/brunoasm/discretizR](DiscretizR).
+Input files used to produce discretized characters in [https://github.com/brunoasm/discretizR](DiscretizR).
 
 
 ## delta
