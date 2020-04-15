@@ -42,3 +42,6 @@ R notebooks to produce species distribution maps and lists of specimens studied.
 - `create_list.Rmd` R notebook to create a list of specimens studied based on an excel table
 - `make_map.Rmd` R notebook to produce the figure with distribution maps in the mais paper.
 
+## supplementary_files
+
+Supplementary files mentioned in the main text: raw data on material studied and raw measurements
