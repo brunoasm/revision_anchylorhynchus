@@ -52,12 +52,37 @@ tnt_io = treeio::read.beast('tnt_symboot_rooted.tre')
 mb_io = treeio::read.beast('mrbayes_alphasampled_consensus_rooted.tre')
 ```
 
-Now let's replace the phylo slot in both objects by the reordered phylo.
-
+Now, we define a function to find the corresponding node in the new tree.
 ```{r}
-tnt_io@phylo = tnt
-mb_io@phylo = mb
+find_new_node = function(nd,old_tr, new_tr){
+  nd = as.integer(nd)
+  if (nd > Ntip(old_tr)){
+    tips = extract.clade(old_tr, nd)$tip.label
+    new_node = getMRCA(new_tr, tips)
+  } else {
+    new_node = match(old_tr$tip.label[as.integer(nd)],new_tr$tip.label)
+  }
+  
+  return(new_node)
+}
 ```
+
+With the new function, we can update the tree and associated data.
+```{r}
+tnt_io@data = tnt_io@data %>%
+  rowwise %>%
+  mutate(node = find_new_node(as.integer(node),tnt_io@phylo, tnt))
+
+tnt_io@phylo = tnt
+
+mb_io@data = mb_io@data %>%
+  rowwise %>%
+  mutate(node = find_new_node(as.integer(node),mb_io@phylo, mb))
+
+mb_io@phylo = mb
+
+```
+
 
 Let's now shorten tip labels:
 
