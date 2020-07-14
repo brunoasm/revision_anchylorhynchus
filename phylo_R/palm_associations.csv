@@ -1,4 +1,4 @@
-﻿species,Syagrus,Butia,Oenocarpus,Euterpe
+species,Syagrus,Butia,Oenocarpus,Euterpe
 Anchylorhynchus_aegrotus,1,0,0,0
 Anchylorhynchus_albidus,1,0,0,0
 Anchylorhynchus_amazonicus,1,0,0,0
@@ -17,10 +17,10 @@ Anchylorhynchus_goiano,1,0,0,0
 Anchylorhynchus_tremolerasi,0,1,0,0
 Anchylorhynchus_chrysomeloides,0,1,0,0
 Anchylorhynchus_tricarinatus,0,0,1,0
-Anchylorhynchus_variabilis,0.5,0.5,0,0
+Anchylorhynchus_variabilis,1,1,0,0
 Anchylorhynchus_vittipennis,1,0,0,0
-Anchylorhynchus_pinnocchio,1,0,0,0
+Anchylorhynchus_pinocchio,1,0,0,0
 Anchylorhynchus_centrosquamatus,1,0,0,0
 Anchylorhynchus_luteobrunneus,1,0,0,0
-Anchylorhynchus_parcus,0.25,0.25,0.25,0.25
+Anchylorhynchus_parcus,1,1,1,1
 Anchylorhynchus_vanini,1,0,0,0

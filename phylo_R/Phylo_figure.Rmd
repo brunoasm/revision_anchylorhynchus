@@ -12,6 +12,7 @@ library(phytools)
 library(tidyverse)
 library(cowplot)
 library(corHMM)
+rm(list=ls())
 ```
 
 # Plot trees
@@ -291,9 +292,9 @@ Now let's run the reconstruction using 3 different models (equal rates, symmetri
 sim_foo = function(md){
 
   a = rayDISC(anc_only,
+              data = as.data.frame(hosts),
               model = md,
-            data = as.data.frame(hosts),
-            node.states='marginal',
+              node.states='marginal',
             root.p = 'maddfitz')
   
   return(a)

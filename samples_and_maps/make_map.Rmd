@@ -158,6 +158,7 @@ p = grid.arrange(arrangeGrob(grobs=plots,
                          nrow = 3))
 
 ggsave('maps_2.pdf', plot=p, device='pdf',width=168,height=200,units='mm',useDingbats=F)
+ggsave('maps_2.eps', plot=p, device='eps',width=168,height=200,units='mm')
 
 plot(p)
 ```
