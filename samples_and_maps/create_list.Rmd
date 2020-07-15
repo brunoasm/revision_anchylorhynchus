@@ -1,6 +1,8 @@
 ---
 title: "Creating a list of studied specimens"
-output: html_notebook
+output:
+  html_notebook:
+    df_print: paged
 ---
 
 In this notebook, we will load a table with information on specimens studied and format it as rich text to include in the manuscript.
@@ -43,11 +45,11 @@ specimens
 
 ```
 
-Now let's change sex by a name that we will replace in the RTF with symbols. Unfortunately, word can't read UTF8 encoding properly, and rtf package can't deal with other encodings.
+Now let's change sex by f# and m# that we will replace later. If this is for a paper in Zootaxa, this is the final format. Unfortunately, word can't read UTF8 encoding properly, and rtf package can't deal with other encodings, so we cannot use ♀ and ♂ directly. One has to find and replace later in the document if these are the desired symbols
 ```{r}
 specimens = specimens %>%
-  mutate(sex = ifelse(sex == 'm','MACHO',sex),
-         sex = ifelse(sex == 'f','FEMEA',sex),
+  mutate(sex = ifelse(sex == 'm','m#',sex),
+         sex = ifelse(sex == 'f','f#',sex),
          sex = ifelse(is.na(sex),'sex unknown',sex))
 
 specimens
@@ -124,7 +126,7 @@ get_summarized_date = function(line){
       
       return(str_c(first,
                    second,
-                   sep='\U2013'
+                   sep='\U2013' #ndash
                    )
              )
     }
@@ -447,5 +449,7 @@ done(rtf)
 # To do manually:
 
 Since measurement table and specimen table are distinct, we will add "dissected" manually.
-We will also use BBedit to change encoding from UTF8 to Mac OS Roman.
-In word, we have to use find and replace to replace "MACHO" with ♂ and "FEMALE" with ♀, and double check any oddity in the species lists.
+
+We will also use BBedit to change encoding from UTF8 to Mac OS Roman before opening in Word.
+
+Finally, double check the species list for anything odd.

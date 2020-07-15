@@ -1,6 +1,8 @@
 ---
 title: "Maps"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 In this notebook we will build maps for the species of Anchylorhynchus, using Natural Earth as base map and combining species with compatible distributions in a single map.
 
@@ -18,7 +20,7 @@ library(gridExtra)
 Let's read specimen data, keep only georreferrenced data and remove duplicates:
 
 ```{r}
-sp_data = readxl::read_excel('especimes estudados_2020_rev1.xlsx')
+sp_data = readxl::read_excel('especimes estudados_2020_rev2.xlsx')
 
 sp_data = sp_data %>%
   filter(str_detect(updated_locality,'mistake',negate=T) | is.na(updated_locality)) %>%
@@ -114,46 +116,9 @@ plots
 ```
 
 And now arrange them in a page:
-```{r}
 
-# plots[[1]] = plots[[1]] + theme(axis.ticks.x = element_line(color='white'),
-#                                 axis.text.x = element_text(color='white'))
-# 
-# for (i in 2:3){
-#   plots[[i]] = plots[[i]] + theme(axis.ticks = element_line(color='white'),
-#                                 axis.text = element_text(color='white'))
-# }
-# 
-# for (i in 5:6){
-#   plots[[i]] = plots[[i]] + theme(axis.ticks.y = element_line(color='white'),
-#                                 axis.text.y = element_text(color='white'))
-# }
-# 
-# p = grid.arrange(arrangeGrob(grobs=plots, 
-#                          nrow = 2))
-# 
-# ggsave('maps.pdf', plot=p, device='pdf',width=168,height = 140,units='mm',useDingbats=F)
-# 
-# plot(p)
-```
 
 ```{r}
-
-# for (i in c(1,3)){
-#   plots[[i]] = plots[[i]] + theme(axis.ticks.x = element_line(color='white'),
-#                                 axis.text.x = element_text(color='white'))
-# }
-# 
-# for (i in c(2,4)){
-#   plots[[i]] = plots[[i]] + theme(axis.ticks = element_line(color='white'),
-#                                 axis.text = element_text(color='white'))
-# }
-# 
-# for (i in 6){
-#   plots[[i]] = plots[[i]] + theme(axis.ticks.y = element_line(color='white'),
-#                                 axis.text.y = element_text(color='white'))
-# }
-
 p = grid.arrange(arrangeGrob(grobs=plots, 
                          nrow = 3))
 
