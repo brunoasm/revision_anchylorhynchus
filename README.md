@@ -29,7 +29,6 @@ Nexus input file for MrBayes, including matrix and commands.
 Analyses in R, including preparation of figures of phylogenies in the paper and stochastic mapping to infer ancestral states for host association.
 
 - `palm_associations.csv` Table associating species fo Anchylorhynchus with palm genera.
-- `tnt_synapomorphies.csv` Parsed output from TNT `apo`command. 
 - `anchylorhynchus_chars.tnt` Simplified character matrix to parse in R
 - `mrbayes_alphasampled_consensus_rooted.tre` Mrbayes consensus tree, rerooted and saved in Figtree as Nexus
 - `tnt_symboot_rooted.tre` TNT best tree, rerooted and saved in Figtree as Nexus
